@@ -6,12 +6,78 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/trips_text"
+        android:id="@+id/current_train_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
-        android:layout_marginTop="207dp"
-        android:text="Trippy"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/rounded_panel_light_outlined"
+        android:padding="15sp"
+        android:text="18.6 mph"
+        android:textSize="28sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/trips_separator"
+        android:layout_width="2.5sp"
+        android:layout_height="125sp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="24dp"
+        android:background="#000000"
+        android:translationX="0sp"
+        app:layout_constraintEnd_toStartOf="@+id/new_alert_button"
+        app:layout_constraintStart_toEndOf="@+id/current_train_speed"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/new_alert_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#4D53D5"
+        android:fontFamily="@font/mandali"
+        android:text="+\t\tNew alert"
+        android:textSize="22sp"
+        app:cornerRadius="5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/sample_notification"
+        android:layout_width="370sp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="17dp"
+        android:background="@drawable/rounded_panel_light"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="201dp">
+
+        <ImageView
+            android:id="@+id/menu_icon_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:paddingHorizontal="20sp"
+            app:srcCompat="@drawable/settings" />
+
+        <TextView
+            android:id="@+id/train_notification_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0"
+            android:fontFamily="@font/epilogue"
+            android:paddingHorizontal="20sp"
+            android:paddingVertical="20sp"
+            android:text="South Station to North Station"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
