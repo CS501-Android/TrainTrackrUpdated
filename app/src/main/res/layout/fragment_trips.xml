@@ -83,25 +83,29 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/pop_up_new_alert"
-        android:layout_width="405dp"
-        android:layout_height="96dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="428dp">
+        android:layout_width="413dp"
+        android:layout_height="165dp"
+        android:layout_marginBottom="207dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:id="@+id/start_destination_alert"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
             android:ems="10"
+            android:hint="Starting Point"
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/editTextText5"
+            android:id="@+id/end_destination_alert"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="59dp"
+            android:layout_gravity="bottom|center_horizontal"
             android:ems="10"
-            android:inputType="text"
-            android:text="Name" />
+            android:hint="Ending Point"
+            android:inputType="text" />
 
     </androidx.cardview.widget.CardView>
 
