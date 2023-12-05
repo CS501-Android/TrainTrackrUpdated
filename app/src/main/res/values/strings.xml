@@ -5,5 +5,5 @@
     <string name="trips">Trips</string>
     <string name="map">Map</string>
     <string name="null_space">""</string>
-    <string name="google_map_api">AIzaSyAl7sZkZxiwjFOQzA6nYyY0sucEmjTP-Ig</string>
+    <string name="google_map_api"></string>
 </resources>
