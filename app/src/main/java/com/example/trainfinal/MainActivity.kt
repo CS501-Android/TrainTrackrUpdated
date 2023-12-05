@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     private val requiredPerms =
         mutableListOf(android.Manifest.permission.CAMERA,
-            android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+//            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
             .toTypedArray()
 
     private val activityResultLauncher =

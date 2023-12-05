@@ -13,7 +13,8 @@ class photoDialog : DialogFragment() {
         return activity?.let {
             // Use the Builder class for convenient dialog construction.
             val builder = AlertDialog.Builder(it)
-            builder.setMessage("Start game")
+            // Ideally populate it with another layout like one of the homework
+            builder.setMessage("Take a photo")
                 .setPositiveButton("Start") { dialog, id ->
                     val transaction =
                         parentFragment?.parentFragmentManager

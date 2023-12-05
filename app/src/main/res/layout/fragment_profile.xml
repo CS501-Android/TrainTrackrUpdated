@@ -18,7 +18,7 @@
 
     <EditText
         android:id="@+id/editTextText"
-        android:layout_width="292dp"
+        android:layout_width="200dp"
         android:layout_height="64dp"
         android:layout_marginTop="24dp"
         android:ems="10"
@@ -31,13 +31,14 @@
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
     <LinearLayout
-        android:layout_width="399dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginTop="1dp"
         android:orientation="vertical"
+        android:weightSum="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:weightSum="3"
         app:layout_constraintTop_toBottomOf="@+id/editTextText">
 
         <TextView
@@ -62,5 +63,28 @@
             android:text="Overall Stars:" />
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="356dp"
+        android:layout_height="265dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profileRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.953">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

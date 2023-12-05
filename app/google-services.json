@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "625816758636",
+    "project_id": "traintrack-505c2",
+    "storage_bucket": "traintrack-505c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625816758636:android:11c5a8ab9cbb78f4086b49",
+        "android_client_info": {
+          "package_name": "com.example.trainfinal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD60ttW5iuVZUVG_IREPEK7KlgXPt-nYmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

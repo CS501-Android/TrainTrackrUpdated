@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 
 
 class ProfileFragment : Fragment() {
@@ -21,6 +22,12 @@ class ProfileFragment : Fragment() {
 //            photoDialog().show(childFragmentManager, "Photo Dialog")
             parentFragmentManager.beginTransaction().replace(R.id.fragment_container, Camera()).commit()
         }
+
+        val dataset = arrayOf("January", "February", "March")
+        val reviewAdapter = ReviewAdapter(dataset)
+
+        val recyclerView: RecyclerView = view.findViewById(R.id.profileRecyclerView)
+        recyclerView.adapter = reviewAdapter
         return view
     }
 
