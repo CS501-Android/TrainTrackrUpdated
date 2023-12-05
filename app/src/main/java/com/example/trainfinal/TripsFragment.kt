@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.Switch
 import androidx.fragment.app.Fragment
@@ -21,5 +22,9 @@ class TripsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val newAlertButton = view.findViewById<Button>(R.id.new_alert_button)
+        newAlertButton.setOnClickListener {
+
+        }
     }
 }
