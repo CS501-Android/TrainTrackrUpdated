@@ -1,12 +1,19 @@
 package com.example.trainfinal
 
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import androidx.compose.ui.unit.TextUnit
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +29,7 @@ class SignupFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +47,53 @@ class SignupFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_signup, container, false)
         val loginText = view.findViewById<TextView>(R.id.loginRedirect)
         val loginBtn = view.findViewById<Button>(R.id.loginBtn)
+        val passwordView = view.findViewById<EditText>(R.id.signupPassword)
+        val passwordConfirmationView = view.findViewById<EditText>(R.id.signupPasswordConfirmation)
+        val emailView = view.findViewById<EditText>(R.id.signupEmail)
+        auth = Firebase.auth
 
         // Redirect to sign up
         loginText.setOnClickListener {parentFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, LoginFragment())
             commit()
         }}
+
+        loginBtn.setOnClickListener {
+            val email = emailView.text;
+            val password = passwordView.text;
+            val passwordConfirmation = passwordConfirmationView.text;
+
+            if (TextUtils.isEmpty(email)){
+                Toast.makeText(activity, "Email is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(password)) {
+                Toast.makeText(activity, "Password is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(passwordConfirmation)) {
+                Toast.makeText(activity, "Password Confirmation is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if(!TextUtils.equals(password, passwordConfirmation)) {
+                Toast.makeText(activity, "Password is not equal", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            auth.createUserWithEmailAndPassword(email.toString(), password.toString())
+                .addOnCompleteListener(requireActivity()) { task ->
+                    if (task.isSuccessful) {
+                        val user = auth.currentUser
+                    } else {
+                        Toast.makeText(
+                            activity,
+                            "Authentication failed.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
+                }
+        }
         return view
     }
 
