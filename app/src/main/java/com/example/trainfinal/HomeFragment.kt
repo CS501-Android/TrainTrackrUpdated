@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -12,6 +14,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import org.w3c.dom.Text
 
 class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
@@ -36,5 +39,19 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         // Move to Belmont, MA
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(42.4383, -71.1856), 15f))
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val goingToDropDown = view.findViewById<CardView>(R.id.additional_popup)
+        val comingFromText = view.findViewById<EditText>(R.id.location_lookup_text_start)
+
+        goingToDropDown.visibility = View.INVISIBLE
+
+        comingFromText.setOnClickListener {
+            if (goingToDropDown.visibility != View.VISIBLE) {
+                goingToDropDown.visibility = View.VISIBLE
+            }
+        }
     }
 }
