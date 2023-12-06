@@ -2,6 +2,7 @@ package com.example.trainfinal
 
 import android.app.Service
 import android.content.Context
+import android.icu.text.ListFormatter.Width
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.CompoundButton
+import android.widget.LinearLayout
 import android.widget.Switch
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat.getSystemService
@@ -44,7 +46,6 @@ class TripsFragment : Fragment() {
             // Submit the alert: Create an Alert object with the destinations
             // and add to a RecyclerView
             popUpAlert.visibility = View.INVISIBLE
-
         }
     }
 }

@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private val profileFragment = ProfileFragment()
     private val tripsFragment = TripsFragment()
     private val settingsFragment = SettingsFragment()
+    private val routeFragment = RoutesFragment()
     private lateinit var bottomNavigationView: BottomNavigationView
 
     private val requiredPerms =
@@ -85,6 +86,14 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         fragmentManager.beginTransaction()
             .replace(R.id.fragment_container, homeFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun navigateToRoutes() {
+        val fragmentManager = supportFragmentManager
+        fragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, routeFragment)
             .addToBackStack(null)
             .commit()
     }

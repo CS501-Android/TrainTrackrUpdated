@@ -48,10 +48,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         goingToDropDown.visibility = View.INVISIBLE
 
+
         comingFromText.setOnClickListener {
-            if (goingToDropDown.visibility != View.VISIBLE) {
-                goingToDropDown.visibility = View.VISIBLE
-            }
+           goingToDropDown.visibility = View.VISIBLE
+//            val myView = view.findViewById<EditText>(R.id.outer_lookup_layout)
+//            val layoutParams = myView.layoutParams
+//            layoutParams.width = 80
+//            myView.layoutParams = layoutParams
         }
     }
+
 }
