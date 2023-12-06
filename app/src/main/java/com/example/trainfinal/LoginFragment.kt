@@ -45,6 +45,8 @@ class LoginFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
         val signupText = view.findViewById<TextView>(R.id.signupRedirect)
         val loginBtn = view.findViewById<Button>(R.id.loginBtn)
+        val emailView = view.findViewById<TextView>(R.id.loginEmail)
+        val passwordView = view.findViewById<TextView>(R.id.loginPassword)
 
         // Redirect to sign up
         signupText.setOnClickListener {parentFragmentManager.beginTransaction().apply {
@@ -56,6 +58,8 @@ class LoginFragment : Fragment() {
 
         // Login check + store local storage if user exist just redirect
         loginBtn.setOnClickListener {
+            val email = emailView.text.toString()
+            val password = passwordView.text.toString()
             startActivity(Intent(activity, MainActivity::class.java))
         }
 
