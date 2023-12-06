@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/signupPassword"
             android:layout_width="279dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
@@ -30,10 +30,10 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/signupEmail" />
 
         <EditText
-            android:id="@+id/editTextTextPassword2"
+            android:id="@+id/signupPasswordConfirmation"
             android:layout_width="279dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
@@ -43,10 +43,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/signupPassword" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/signupEmail"
             android:layout_width="279dp"
             android:layout_height="48dp"
             android:layout_marginTop="56dp"
@@ -61,12 +61,12 @@
             android:id="@+id/loginBtn"
             android:layout_width="276dp"
             android:layout_height="42dp"
-            android:text="Login"
+            android:text="Sign Up"
             app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.511"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2"
+            app:layout_constraintTop_toBottomOf="@+id/signupPasswordConfirmation"
             app:layout_constraintVertical_bias="0.267" />
 
         <androidx.constraintlayout.widget.Guideline

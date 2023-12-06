@@ -2,12 +2,17 @@ package com.example.trainfinal
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +28,8 @@ class LoginFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +47,8 @@ class LoginFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
         val signupText = view.findViewById<TextView>(R.id.signupRedirect)
         val loginBtn = view.findViewById<Button>(R.id.loginBtn)
+        val emailView = view.findViewById<TextView>(R.id.loginEmail)
+        val passwordView = view.findViewById<TextView>(R.id.loginPassword)
 
         // Redirect to sign up
         signupText.setOnClickListener {parentFragmentManager.beginTransaction().apply {
@@ -47,9 +56,35 @@ class LoginFragment : Fragment() {
             commit()
         }}
 
+        auth = Firebase.auth
+
         // Login check + store local storage if user exist just redirect
         loginBtn.setOnClickListener {
-            startActivity(Intent(activity, MainActivity::class.java))
+            val email = emailView.text.toString()
+            val password = passwordView.text.toString()
+            if (TextUtils.isEmpty(email)) {
+                Toast.makeText(activity, "Email input field is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (TextUtils.isEmpty(password)) {
+                Toast.makeText(activity, "Password input field is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(requireActivity()) { task ->
+                    if (task.isSuccessful) {
+                        val user = auth.currentUser
+                        startActivity(Intent(activity, MainActivity::class.java))
+                    } else {
+                        Toast.makeText(
+                            activity,
+                            "Authentication failed.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
+                }
         }
 
         return view
