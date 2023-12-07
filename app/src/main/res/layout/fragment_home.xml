@@ -65,21 +65,99 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/popup_collapsible"
         android:layout_width="match_parent"
-        android:layout_height="302dp"
+        android:layout_height="300sp"
+        android:background="@drawable/top_rounded_corners"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/button_collapsible"
-            android:layout_width="128dp"
-            android:layout_height="35dp"
+            android:layout_width="40sp"
+            android:layout_height="10sp"
             android:layout_gravity="center_horizontal"
-            android:background="#F49C9C"
+            android:layout_marginTop="10sp"
+            android:backgroundTint="#454040"
             android:gravity="center"
-            android:text="Button"
             android:visibility="visible"
-            app:cornerRadius="5sp"
+            app:cornerRadius="20sp"
             tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/layout_vertical_home"
+            android:layout_width="match_parent"
+            android:layout_height="269dp"
+            android:layout_gravity="bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_route_details"
+                android:layout_width="350sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5sp"
+                android:background="@drawable/rounded_panel_light"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15sp"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginBottom="5sp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/add_location" />
+
+                    <TextView
+                        android:id="@+id/text_starting_point_maps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15sp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mandali"
+                        android:text="South Station"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15sp"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginBottom="5sp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/add_location" />
+
+                    <TextView
+                        android:id="@+id/text_ending_point_maps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15sp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/mandali"
+                        android:text="North Andover"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
