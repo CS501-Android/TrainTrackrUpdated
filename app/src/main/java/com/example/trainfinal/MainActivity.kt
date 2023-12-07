@@ -4,10 +4,16 @@ import android.content.Context
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 // MainActivity
 class MainActivity : AppCompatActivity() {
@@ -18,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     private val settingsFragment = SettingsFragment()
     private val routeFragment = RoutesFragment()
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     private val requiredPerms =
         mutableListOf(android.Manifest.permission.CAMERA,
@@ -44,6 +52,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        database = Firebase.database.reference
+        auth = com.google.firebase.Firebase.auth
+
+        val map = mutableMapOf<String, Any>()
+        map[auth.currentUser?.email.toString()] = "potato"
+
+        database.child("users")
+            .child("E")
+            .setValue("b")
+
+        Log.e("helloworld", auth.currentUser?.email.toString())
+        Log.e("helloworld", auth.currentUser?.uid.toString())
 
         if (!hasPerms(baseContext)) {
             activityResultLauncher.launch(requiredPerms)

@@ -13,7 +13,10 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.util.UUID
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,6 +33,7 @@ class SignupFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +55,7 @@ class SignupFragment : Fragment() {
         val passwordConfirmationView = view.findViewById<EditText>(R.id.signupPasswordConfirmation)
         val emailView = view.findViewById<EditText>(R.id.signupEmail)
         auth = Firebase.auth
+        database = Firebase.database.reference
 
         // Redirect to sign up
         loginText.setOnClickListener {parentFragmentManager.beginTransaction().apply {
@@ -85,6 +90,10 @@ class SignupFragment : Fragment() {
                 .addOnCompleteListener(requireActivity()) { task ->
                     if (task.isSuccessful) {
                         val user = auth.currentUser
+                        Util.writeNewUser(user!!.uid,
+                            UUID.randomUUID().toString(),
+                            user?.email,
+                            database)
                         startActivity(Intent(activity, MainActivity::class.java))
                     } else {
                         Toast.makeText(

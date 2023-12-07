@@ -1,7 +1,12 @@
 package com.example.trainfinal
 
-object User {
-    var name: String = "";
-    var username: String = "";
-    var password: String = "";
+import android.net.Uri
+
+data class User (
+    val username: String? = null,
+    val email: String? = null,
+    val profileImage: Uri? = null,
+    val posts: MutableList<String>? = mutableListOf(),
+    val followers: MutableList<String>? = mutableListOf()
+) {
 }
