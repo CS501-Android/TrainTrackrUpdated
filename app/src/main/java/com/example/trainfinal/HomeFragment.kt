@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
@@ -45,6 +46,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
         val goingToDropDown = view.findViewById<CardView>(R.id.additional_popup)
         val comingFromText = view.findViewById<EditText>(R.id.location_lookup_text_start)
+        var collapsiblePopUp = view.findViewById<CardView>(R.id.popup_collapsible)
+        val bpCollapse = view.findViewById<Button>(R.id.button_collapsible)
+
+        bpCollapse.setOnClickListener {
+            collapsiblePopUp.layoutParams.width = 50
+        }
 
         goingToDropDown.visibility = View.INVISIBLE
 

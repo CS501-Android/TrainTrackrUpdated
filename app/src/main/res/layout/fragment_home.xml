@@ -59,6 +59,28 @@
                 android:hint="Going To..."
                 android:inputType="text" />
         </androidx.cardview.widget.CardView>
+
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/popup_collabsible"
+        android:layout_width="match_parent"
+        android:layout_height="302dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button_collapsible"
+            android:layout_width="128dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#F49C9C"
+            android:gravity="center"
+            android:text="Button"
+            android:visibility="visible"
+            app:cornerRadius="5sp"
+            tools:visibility="visible" />
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
