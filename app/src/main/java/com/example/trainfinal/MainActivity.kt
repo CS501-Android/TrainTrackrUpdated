@@ -72,6 +72,11 @@ class MainActivity : AppCompatActivity() {
                         true
                     }
 
+                    R.id.nav_route -> {
+                        navigateToRoutes()
+                        true
+                    }
+
                     else -> {
                         navigateToSettings()
                         true
