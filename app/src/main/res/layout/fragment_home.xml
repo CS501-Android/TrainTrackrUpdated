@@ -63,7 +63,7 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/popup_collabsible"
+        android:id="@+id/popup_collapsible"
         android:layout_width="match_parent"
         android:layout_height="302dp"
         app:layout_constraintBottom_toBottomOf="parent"

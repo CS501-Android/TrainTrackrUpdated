@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_view_height_long">300sp</dimen>
+    <dimen name="card_view_height_short">50sp</dimen>
+</resources>

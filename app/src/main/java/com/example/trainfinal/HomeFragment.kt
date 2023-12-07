@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -50,7 +51,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         val bpCollapse = view.findViewById<Button>(R.id.button_collapsible)
 
         bpCollapse.setOnClickListener {
-            collapsiblePopUp.layoutParams.width = 50
+//            collapsiblePopUp.layoutParams.width = 50
+            Toast.makeText(context, "Hmm...", Toast.LENGTH_SHORT).show()
+            collapsiblePopUp.layoutParams.height = 50
+            val cardViewWidth = resources.getDimension(R.dimen.card_view_width)
+
+            cardView.layoutParams.width = cardViewWidth.toInt()
+
         }
 
         goingToDropDown.visibility = View.INVISIBLE
