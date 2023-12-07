@@ -5,7 +5,8 @@ import java.util.UUID
 data class Review (
     val id: UUID? = null,
     val title: String? = null,
+    // Maybe change it
     val content: String? = null,
-    val routes: MutableList<Route> = mutableListOf(),
+    val rating: Float? = 0.0f
 ) {
 }
