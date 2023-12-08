@@ -1,5 +1,6 @@
 package com.example.trainfinal
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SettingsFragment : Fragment() {
 
@@ -14,6 +17,7 @@ class SettingsFragment : Fragment() {
     private lateinit var sunIcon: ImageView
     private lateinit var accountNav: Button
     private lateinit var reviewNav: Button
+    private lateinit var logoutBtn: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +31,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         moonIcon = view.findViewById(R.id.moon_icon)
         sunIcon = view.findViewById(R.id.sun_icon)
+        logoutBtn = view.findViewById(R.id.sign_out)
         var sunOn = true
 
         accountNav =  view.findViewById(R.id.nav_account_settings)
@@ -72,6 +77,11 @@ class SettingsFragment : Fragment() {
             transaction.replace(R.id.fragment_container, targetFragment)
             transaction.addToBackStack(null)
             transaction.commit()
+        }
+
+        logoutBtn.setOnClickListener{
+            Firebase.auth.signOut()
+            startActivity(Intent(activity, Login::class.java))
         }
     }
 }

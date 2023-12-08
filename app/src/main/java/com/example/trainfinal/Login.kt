@@ -1,5 +1,6 @@
 package com.example.trainfinal
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,7 +22,7 @@ class Login : AppCompatActivity() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            // go to main activity
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 

@@ -92,7 +92,7 @@ class SignupFragment : Fragment() {
                         val user = auth.currentUser
                         Util.writeNewUser(user!!.uid,
                             UUID.randomUUID().toString(),
-                            user?.email,
+                            user.email.toString(),
                             database)
                         startActivity(Intent(activity, MainActivity::class.java))
                     } else {

@@ -4,9 +4,9 @@ import android.net.Uri
 import java.util.UUID
 
 data class Route(
-    val routeId: UUID? = null,
-    val routeTitle: String? = null,
-    val routeDescription: String? = null,
+    val routeId: String,
+    val routeTitle: String = "TMP",
+    val routeDescription: String = "",
     val scene: Uri? = null,
     val rating: Float? = 0.0f,
     val reviewList: MutableList<Review> = mutableListOf(),
