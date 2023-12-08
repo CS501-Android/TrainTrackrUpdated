@@ -48,6 +48,9 @@
                     android:id="@+id/review_rating_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15sp"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginBottom="15sp"
                     android:fontFamily="@font/epilogue"
                     android:text="Rating"
                     android:textSize="20sp" />
@@ -55,6 +58,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="15sp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
