@@ -58,7 +58,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="15sp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -96,9 +95,11 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/editTextText5"
+                android:id="@+id/review_search_routes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
                 android:ems="10"
                 android:hint="Search Routes..."
                 android:inputType="text" />
@@ -108,19 +109,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15sp"
-                android:layout_marginTop="15sp"
+                android:layout_marginTop="5sp"
+                android:layout_marginBottom="5sp"
                 android:fontFamily="@font/epilogue"
+                android:text="Topic"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/topic_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:ems="10"
+                android:hint="Cool Beans!"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/create_review_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15sp"
+                android:fontFamily="@font/mandali"
                 android:text="Review"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editTextText4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
+                android:id="@+id/review_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="15sp"
+                android:layout_marginRight="15sp"
                 android:inputType="text"
                 android:text="Name" />
+
+            <Button
+                android:id="@+id/submit_button_add_route"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginRight="15sp"
+                android:background="#080B51"
+                android:text="Submit"
+                app:cornerRadius="5sp" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
