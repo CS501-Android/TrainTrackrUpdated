@@ -101,7 +101,7 @@
                 android:layout_marginLeft="15sp"
                 android:layout_marginRight="15sp"
                 android:ems="10"
-                android:hint="Search Routes..."
+                android:hint="Search Routes by lat, long..."
                 android:inputType="text" />
 
             <TextView
@@ -141,8 +141,8 @@
                 android:layout_height="100dp"
                 android:layout_marginLeft="15sp"
                 android:layout_marginRight="15sp"
-                android:inputType="text"
-                android:hint="How did you feel about this " />
+                android:hint="I thought that..."
+                android:inputType="text" />
 
             <Button
                 android:id="@+id/submit_button_add_route"
