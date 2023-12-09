@@ -54,6 +54,7 @@
         android:layout_marginBottom="469dp"
         android:background="@drawable/rounded_panel_light"
         android:orientation="horizontal"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
