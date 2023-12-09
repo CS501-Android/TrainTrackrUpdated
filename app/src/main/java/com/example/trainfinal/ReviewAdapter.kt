@@ -4,7 +4,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 
@@ -15,11 +17,13 @@ class ReviewAdapter(private val dataSet: MutableList<Route>):
         val ratingView: TextView
         val titleView: TextView
         val contentView: TextView
+        val redirectBtn: Button
 
         init {
             ratingView = view.findViewById(R.id.rating)
             titleView = view.findViewById(R.id.title)
             contentView = view.findViewById(R.id.content)
+            redirectBtn = view.findViewById(R.id.redirectButton)
         }
     }
 
@@ -36,7 +40,6 @@ class ReviewAdapter(private val dataSet: MutableList<Route>):
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-//        viewHolder.textView.text = dataSet[position]
         viewHolder.ratingView.text = dataSet[position].rating.toString()
         viewHolder.titleView.text = dataSet[position].routeTitle
         viewHolder.contentView.text = dataSet[position].routeDescription

@@ -6,7 +6,7 @@ data class User (
     val username: String = "",
     val email: String = "",
     val profileImage: Uri? = null,
-    val posts: MutableList<Route> = mutableListOf(),
+    val posts: MutableList<String> = mutableListOf(),
     val followers: MutableList<String> = mutableListOf()
 ) {
 }

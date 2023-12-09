@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.getValue
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import okhttp3.internal.wait
@@ -26,6 +27,7 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private var userData: User? = null
+    private var routeData: HashMap<String, Route?> = HashMap<String, Route?>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +42,7 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
         database = Firebase.database.reference
 
         getUserInformation(auth!!.currentUser!!.uid, database)
+        getRoutes(database)
 
         val mapView = childFragmentManager.findFragmentById(R.id.mapFragmentRoutes) as SupportMapFragment
         mapView.getMapAsync(this)
@@ -50,8 +53,11 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
             topic.setText("")
             review.setText("")
             val newRoute = Route(UUID.randomUUID().toString(), topicText, reviewText)
-            userData?.posts?.add(newRoute)
+            userData?.posts?.add(newRoute.routeId)
+            routeData[newRoute.routeId] = newRoute
+
             Util.updateUser(auth!!.currentUser!!.uid, userData, database)
+            Util.updateRoute(routeData, database)
             Log.e("firebasestupid", "${userData.toString()}")
         }
 
@@ -71,6 +77,17 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
     private fun getUserInformation(userId: String, database: DatabaseReference) {
         database.child("users").child(userId).get().addOnSuccessListener {
             userData = it.getValue(User::class.java)
+        }.addOnFailureListener{
+            Log.e("firebasestupid", "Error getting data", it)
+        }
+    }
+
+    private fun getRoutes(database: DatabaseReference) {
+        database.child("routes").get().addOnSuccessListener { it ->
+            val children = it!!.children
+            children.forEach {
+                routeData[it.key.toString()] = it.getValue(Route::class.java)
+            }
         }.addOnFailureListener{
             Log.e("firebasestupid", "Error getting data", it)
         }

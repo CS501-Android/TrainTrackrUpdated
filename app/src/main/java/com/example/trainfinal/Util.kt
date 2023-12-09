@@ -25,5 +25,11 @@ class Util {
                 .setValue(user)
         }
 
+        fun updateRoute(routeData: Any?, database: DatabaseReference) {
+            database
+                .child("routes")
+                .setValue(routeData)
+        }
+
     }
 }

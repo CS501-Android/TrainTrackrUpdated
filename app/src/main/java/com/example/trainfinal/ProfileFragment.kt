@@ -37,10 +37,10 @@ class ProfileFragment : Fragment() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 userData = dataSnapshot.getValue<User>()
-                val reviewAdapter = ReviewAdapter(userData!!.posts)
-
-                val recyclerView: RecyclerView = view.findViewById(R.id.profileRecyclerView)
-                recyclerView.adapter = reviewAdapter
+//                val reviewAdapter = ReviewAdapter(userData!!.posts)
+//
+//                val recyclerView: RecyclerView = view.findViewById(R.id.profileRecyclerView)
+//                recyclerView.adapter = reviewAdapter
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -56,9 +56,6 @@ class ProfileFragment : Fragment() {
 //            parentFragmentManager.beginTransaction().replace(R.id.fragment_container, Camera()).commit()
 //        }
 
-
-
-        val dataset = arrayOf("January", "February", "March")
         return view
     }
 
