@@ -43,8 +43,12 @@ class MainActivity : AppCompatActivity() {
 
             if (!permissionGranted)
                 Toast.makeText(this, "Permission request Denied", Toast.LENGTH_LONG).show()
-            else
+            else {
                 Toast.makeText(this, "Permission request Granted", Toast.LENGTH_LONG).show()
+                Thread.sleep(1000)
+                finish()
+                startActivity(intent)
+            }
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -4,7 +4,7 @@ import android.net.Uri
 import java.util.UUID
 
 data class Route(
-    val routeId: String,
+    val routeId: String = UUID.randomUUID().toString(),
     val routeTitle: String = "TMP",
     val routeDescription: String = "",
     val scene: Uri? = null,
