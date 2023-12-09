@@ -66,4 +66,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nav_account_settings" />
 
+    <Button
+        android:id="@+id/sign_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="43dp"
+        android:background="#00FFFFFF"
+        android:fontFamily="@font/mandali"
+        android:text="Sign Out"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nav_review_settings" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
