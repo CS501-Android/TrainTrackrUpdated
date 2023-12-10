@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 
-class ReviewAdapter(private val dataSet: MutableList<Route>):
+class ReviewAdapter(private val dataSet: MutableList<Route?>):
     RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -40,9 +40,9 @@ class ReviewAdapter(private val dataSet: MutableList<Route>):
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.ratingView.text = dataSet[position].rating.toString()
-        viewHolder.titleView.text = dataSet[position].routeTitle
-        viewHolder.contentView.text = dataSet[position].routeDescription
+        viewHolder.ratingView.text = dataSet[position]?.rating.toString()
+        viewHolder.titleView.text = dataSet[position]?.routeTitle
+        viewHolder.contentView.text = dataSet[position]?.routeDescription
         Log.i("firebasedataset", "${dataSet[position]}")
     }
 
