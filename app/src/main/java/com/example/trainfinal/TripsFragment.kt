@@ -46,9 +46,9 @@ class TripsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val popUpAlert = view.findViewById<CardView>(R.id.pop_up_new_alert)
-        val newAlertButton = view.findViewById<Button>(R.id.new_alert_button)
-        val submitAlertButton = view.findViewById<Button>(R.id.arrow_alert)
+//        val popUpAlert = view.findViewById<CardView>(R.id.pop_up_new_alert)
+//        val newAlertButton = view.findViewById<Button>(R.id.new_alert_button)
+//        val submitAlertButton = view.findViewById<Button>(R.id.arrow_alert)
 
         auth = Firebase.auth
         database = Firebase.database.reference
@@ -68,19 +68,19 @@ class TripsFragment : Fragment() {
             .child(auth!!.currentUser!!.uid)
             .addValueEventListener(postListener)
 
-        popUpAlert.visibility = View.INVISIBLE
-
-        newAlertButton.setOnClickListener {
-            if (popUpAlert.visibility != View.VISIBLE) {
-                popUpAlert.visibility = View.VISIBLE
-            }
-        }
-
-        submitAlertButton.setOnClickListener {
-            // Submit the alert: Create an Alert object with the destinations
-            // and add to a RecyclerView
-            popUpAlert.visibility = View.INVISIBLE
-        }
+//        popUpAlert.visibility = View.INVISIBLE
+//
+//        newAlertButton.setOnClickListener {
+//            if (popUpAlert.visibility != View.VISIBLE) {
+//                popUpAlert.visibility = View.VISIBLE
+//            }
+//        }
+//
+//        submitAlertButton.setOnClickListener {
+//            // Submit the alert: Create an Alert object with the destinations
+//            // and add to a RecyclerView
+//            popUpAlert.visibility = View.INVISIBLE
+//        }
     }
 
     private fun getRoutes(user: User?, view: View, database: DatabaseReference) {

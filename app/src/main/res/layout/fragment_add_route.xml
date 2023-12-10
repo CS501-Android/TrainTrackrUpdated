@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -40,20 +41,20 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/title_text_add_route"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20sp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="10sp"
                 android:fontFamily="@font/mandali"
                 android:text="Title"
                 android:textColor="@color/navy"
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/editTextText4"
+                android:id="@+id/add_route_title_field"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50sp"
                 android:layout_marginHorizontal="20sp"
                 android:background="@drawable/panel_text_input_decoration"
                 android:fontFamily="@font/mandali"
@@ -62,20 +63,20 @@
                 android:paddingBottom="5sp" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/lat_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="10sp"
                 android:fontFamily="@font/mandali"
                 android:text="Latitude"
                 android:textColor="@color/navy"
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/editTextText5"
+                android:id="@+id/add_route_lat_field"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50sp"
                 android:layout_marginHorizontal="20sp"
                 android:background="@drawable/panel_text_input_decoration"
                 android:fontFamily="@font/mandali"
@@ -84,27 +85,40 @@
                 android:paddingBottom="5sp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/long_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20sp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="10sp"
                 android:fontFamily="@font/mandali"
                 android:text="Longitude"
                 android:textColor="@color/navy"
                 android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/editTextText6"
+                android:id="@+id/add_route_long_field"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50sp"
                 android:layout_marginHorizontal="20sp"
-                android:layout_marginBottom="30sp"
                 android:background="@drawable/panel_text_input_decoration"
                 android:fontFamily="@font/mandali"
                 android:hint="80.12...."
                 android:inputType="text"
                 android:paddingBottom="5sp" />
+
+            <Button
+                android:id="@+id/submit_route_button"
+                android:layout_width="312sp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10sp"
+                android:backgroundTint="@color/blue"
+                android:backgroundTintMode="src_in"
+                android:fontFamily="@font/mandali"
+                android:text="Submit Route"
+                android:textSize="14sp"
+                app:cornerRadius="4sp" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
