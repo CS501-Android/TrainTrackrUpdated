@@ -25,143 +25,88 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/pop_up_create_review"
-        android:layout_width="300sp"
-        android:layout_height="400sp"
-        android:layout_marginStart="55dp"
-        android:layout_marginBottom="200dp"
-        android:background="@drawable/rounded_panel_light_outlined"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" >
+        android:id="@+id/pop_up_create_route_latlong"
+        android:layout_width="350sp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:visibility="invisible">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/review_rating_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15sp"
-                    android:layout_marginTop="15sp"
-                    android:layout_marginBottom="15sp"
-                    android:fontFamily="@font/epilogue"
-                    android:text="Rating"
-                    android:textSize="20sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/star_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        app:srcCompat="@drawable/star_hollow" />
-
-                    <ImageView
-                        android:id="@+id/star_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/star_hollow" />
-
-                    <ImageView
-                        android:id="@+id/star_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/star_hollow" />
-
-                    <ImageView
-                        android:id="@+id/star_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/star_hollow" />
-
-                    <ImageView
-                        android:id="@+id/star_5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/star_hollow" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/review_search_routes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp"
-                android:ems="10"
-                android:hint="Search Routes by lat, long..."
-                android:inputType="text" />
+            android:background="@drawable/rounded_panel_text_input"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/create_review_title"
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15sp"
-                android:layout_marginTop="5sp"
-                android:layout_marginBottom="5sp"
-                android:fontFamily="@font/epilogue"
-                android:text="Topic"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/mandali"
+                android:text="Title"
+                android:textColor="@color/navy"
+                android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/topic_edit_text"
+                android:id="@+id/editTextText4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15sp"
-                android:ems="10"
-                android:hint="Cool Beans!"
-                android:inputType="text" />
+                android:layout_marginHorizontal="20sp"
+                android:background="@drawable/panel_text_input_decoration"
+                android:fontFamily="@font/mandali"
+                android:hint="Rocky Route..."
+                android:inputType="text"
+                android:paddingBottom="5sp" />
 
             <TextView
-                android:id="@+id/create_review_review"
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15sp"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginTop="20sp"
                 android:fontFamily="@font/mandali"
-                android:text="Review"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:text="Latitude"
+                android:textColor="@color/navy"
+                android:textSize="22sp" />
 
             <EditText
-                android:id="@+id/review_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp"
-                android:hint="I thought that..."
-                android:inputType="text" />
-
-            <Button
-                android:id="@+id/submit_button_add_route"
+                android:id="@+id/editTextText5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15sp"
-                android:layout_marginTop="15sp"
-                android:layout_marginRight="15sp"
-                android:background="#080B51"
-                android:text="Submit"
-                app:cornerRadius="5sp" />
+                android:layout_marginHorizontal="20sp"
+                android:background="@drawable/panel_text_input_decoration"
+                android:fontFamily="@font/mandali"
+                android:hint="60.39..."
+                android:inputType="text"
+                android:paddingBottom="5sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginTop="20sp"
+                android:fontFamily="@font/mandali"
+                android:text="Longitude"
+                android:textColor="@color/navy"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/editTextText6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginBottom="30sp"
+                android:background="@drawable/panel_text_input_decoration"
+                android:fontFamily="@font/mandali"
+                android:hint="80.12...."
+                android:inputType="text"
+                android:paddingBottom="5sp" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/pop_up_create_route_latlong"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
