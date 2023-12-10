@@ -17,13 +17,11 @@ class ReviewAdapter(private val dataSet: MutableList<Route?>):
         val ratingView: TextView
         val titleView: TextView
         val contentView: TextView
-        val redirectBtn: Button
 
         init {
             ratingView = view.findViewById(R.id.rating)
             titleView = view.findViewById(R.id.title)
             contentView = view.findViewById(R.id.content)
-            redirectBtn = view.findViewById(R.id.redirectButton)
         }
     }
 
