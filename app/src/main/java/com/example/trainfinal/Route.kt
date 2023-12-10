@@ -8,7 +8,7 @@ data class Route(
     val routeTitle: String = "TMP",
     val routeDescription: String = "",
     val scene: Uri? = null,
-    val rating: Float? = 0.0f,
+    val rating: Int? = 0,
     val reviewList: MutableList<Review> = mutableListOf(),
     val stops: MutableList<RouteStops> = mutableListOf()
 ) {
