@@ -22,7 +22,9 @@ import com.google.firebase.ktx.Firebase
 class ProfileFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private lateinit var recyclerView: RecyclerView
     private var userData: User? = null
+    private var routeData: HashMap<String, Route?> = HashMap<String, Route?>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,20 +35,19 @@ class ProfileFragment : Fragment() {
         var image = view.findViewById<ImageButton>(R.id.imageButton)
         auth = Firebase.auth
         database = Firebase.database.reference
+        recyclerView = view.findViewById(R.id.profileRecyclerView)
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 userData = dataSnapshot.getValue<User>()
-//                val reviewAdapter = ReviewAdapter(userData!!.posts)
-//
-//                val recyclerView: RecyclerView = view.findViewById(R.id.profileRecyclerView)
-//                recyclerView.adapter = reviewAdapter
+                getRoutes(userData, view, database)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.w("firebaseStupid", "loadPost:onCancelled", databaseError.toException())
             }
         }
+
         database.child("users")
             .child(auth!!.currentUser!!.uid)
             .addValueEventListener(postListener)
@@ -61,6 +62,22 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.i("firebasestupid", "${userData.toString()}")
+    }
+
+    private fun getRoutes(user: User?, view: View, database: DatabaseReference) {
+        var routes: MutableList<Route?> = mutableListOf()
+        database.child("routes").get().addOnSuccessListener { it ->
+            val children = it!!.children
+            children.forEach {
+                routeData[it.key.toString()] = it.getValue(Route::class.java)
+                if (user!!.posts.contains(it.key.toString())) {
+                    routes.add(it.getValue(Route::class.java))
+                }
+            }
+            val reviewAdapter = ReviewAdapter(routes)
+            recyclerView.adapter = reviewAdapter
+        }.addOnFailureListener{
+            Log.e("firebasestupid", "Error getting data", it)
+        }
     }
 }
