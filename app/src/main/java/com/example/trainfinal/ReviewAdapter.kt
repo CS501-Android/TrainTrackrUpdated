@@ -7,21 +7,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 
-class ReviewAdapter(private val dataSet: MutableList<Route?>):
+class ReviewAdapter(private val dataSet: MutableList<Route?>, val clickListener: (Route?) -> Unit):
     RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val ratingView: TextView
         val titleView: TextView
-        val contentView: TextView
+        val containerView: ConstraintLayout
 
         init {
             ratingView = view.findViewById(R.id.rating)
             titleView = view.findViewById(R.id.title)
-            contentView = view.findViewById(R.id.content)
+            containerView = view.findViewById(R.id.containerView)
         }
     }
 
@@ -40,7 +41,7 @@ class ReviewAdapter(private val dataSet: MutableList<Route?>):
         // contents of the view with that element
         viewHolder.ratingView.text = dataSet[position]?.rating.toString()
         viewHolder.titleView.text = dataSet[position]?.routeTitle
-        viewHolder.contentView.text = dataSet[position]?.routeDescription
+        viewHolder?.containerView?.setOnClickListener { clickListener(dataSet[position]) }
         Log.i("firebasedataset", "${dataSet[position]}")
     }
 

@@ -74,8 +74,9 @@ class ProfileFragment : Fragment() {
                     routes.add(it.getValue(Route::class.java))
                 }
             }
-            val reviewAdapter = ReviewAdapter(routes)
-            recyclerView.adapter = reviewAdapter
+            recyclerView.adapter = ReviewAdapter(routes) {
+                Log.i("firebasestupid", "${it.toString()}")
+            }
         }.addOnFailureListener{
             Log.e("firebasestupid", "Error getting data", it)
         }
