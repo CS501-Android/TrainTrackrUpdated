@@ -19,12 +19,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20sp"
             android:layout_marginTop="20sp"
-            android:fontFamily="@font/epilogue"
             android:text="Favorite Trips"
             android:textSize="24sp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_trips"
+            android:id="@+id/favorite_recycler"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="20sp"
@@ -61,7 +61,6 @@
             android:layout_width="240sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:fontFamily="@font/mandali"
             android:paddingLeft="14sp"
             android:text="South Station to North Station"
             android:textSize="16sp" />
@@ -93,13 +92,14 @@
             android:layout_marginLeft="20sp"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="10sp"
-            android:fontFamily="@font/epilogue"
             android:text="Recommended Trips"
             android:textSize="24sp" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommend_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginStart="20sp"
             android:layout_marginEnd="20sp" />
     </LinearLayout>

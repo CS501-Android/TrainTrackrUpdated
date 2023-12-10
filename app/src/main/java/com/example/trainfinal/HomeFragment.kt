@@ -72,7 +72,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                 horizontalPartOfThing.layoutParams = layoutParamsHorizontal
             } else {
                 // The keyboard is being hidden
-
             }
         })
     }

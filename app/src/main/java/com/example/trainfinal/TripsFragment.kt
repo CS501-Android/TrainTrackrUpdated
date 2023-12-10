@@ -1,21 +1,10 @@
 package com.example.trainfinal
 
-import android.app.Service
-import android.content.Context
-import android.icu.text.ListFormatter.Width
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.CompoundButton
-import android.widget.LinearLayout
-import android.widget.Switch
-import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.ContextCompat.getSystemServiceName
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -29,7 +18,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class TripsFragment : Fragment() {
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recommendationRecyclerView: RecyclerView
+    private lateinit var favoriteRecyclerView: RecyclerView
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private var userData: User? = null
@@ -40,23 +30,17 @@ class TripsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_trips, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-//        val popUpAlert = view.findViewById<CardView>(R.id.pop_up_new_alert)
-//        val newAlertButton = view.findViewById<Button>(R.id.new_alert_button)
-//        val submitAlertButton = view.findViewById<Button>(R.id.arrow_alert)
+        val view = inflater.inflate(R.layout.fragment_trips, container, false)
 
         auth = Firebase.auth
         database = Firebase.database.reference
+        favoriteRecyclerView = view.findViewById(R.id.favorite_recycler)
+        recommendationRecyclerView = view.findViewById(R.id.recommend_recycler)
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 userData = dataSnapshot.getValue<User>()
-                getRoutes(userData, view, database)
+                getRoutes(userData, database)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -67,6 +51,16 @@ class TripsFragment : Fragment() {
         database.child("users")
             .child(auth!!.currentUser!!.uid)
             .addValueEventListener(postListener)
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+//        val popUpAlert = view.findViewById<CardView>(R.id.pop_up_new_alert)
+//        val newAlertButton = view.findViewById<Button>(R.id.new_alert_button)
+//        val submitAlertButton = view.findViewById<Button>(R.id.arrow_alert)
 
 //        popUpAlert.visibility = View.INVISIBLE
 //
@@ -83,13 +77,18 @@ class TripsFragment : Fragment() {
 //        }
     }
 
-    private fun getRoutes(user: User?, view: View, database: DatabaseReference) {
+    private fun getRoutes(user: User?, database: DatabaseReference) {
         var routes: MutableList<Route?> = mutableListOf()
         database.child("routes").get().addOnSuccessListener { it ->
             val children = it!!.children
             children.forEach {
                 routeData[it.key.toString()] = it.getValue(Route::class.java)
                 routes.add(it.getValue(Route::class.java))
+                Log.i("firebasestupid2", routes.toString())
+            }
+
+            recommendationRecyclerView.adapter = ReviewAdapter(routes) {
+                Log.i("firebasestupid", "Hello")
             }
 //            val reviewAdapter = ReviewAdapter(routes)
 //            recyclerView.adapter = reviewAdapter
