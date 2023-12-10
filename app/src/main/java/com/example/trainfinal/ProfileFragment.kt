@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +25,9 @@ class ProfileFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var recyclerView: RecyclerView
+    private lateinit var username: TextView
+    private lateinit var follower: TextView
+    private lateinit var posts: TextView
     private var userData: User? = null
     private var routeData: HashMap<String, Route?> = HashMap<String, Route?>()
 
@@ -36,10 +41,17 @@ class ProfileFragment : Fragment() {
         auth = Firebase.auth
         database = Firebase.database.reference
         recyclerView = view.findViewById(R.id.profileRecyclerView)
+        posts = view.findViewById(R.id.posts)
+        username = view.findViewById(R.id.username)
+        follower = view.findViewById(R.id.followers)
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 userData = dataSnapshot.getValue<User>()
+                posts.text = "Overall post: ${userData?.posts?.count()}"
+                follower.text = "Overall post: ${userData?.followers?.count()}"
+                username.text = "${userData?.email}"
+
                 getRoutes(userData, database)
             }
 
