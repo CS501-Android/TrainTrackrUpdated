@@ -40,7 +40,7 @@ class ProfileFragment : Fragment() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 userData = dataSnapshot.getValue<User>()
-                getRoutes(userData, view, database)
+                getRoutes(userData, database)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -64,7 +64,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun getRoutes(user: User?, view: View, database: DatabaseReference) {
+    private fun getRoutes(user: User?, database: DatabaseReference) {
         var routes: MutableList<Route?> = mutableListOf()
         database.child("routes").get().addOnSuccessListener { it ->
             val children = it!!.children
@@ -75,7 +75,10 @@ class ProfileFragment : Fragment() {
                 }
             }
             recyclerView.adapter = ReviewAdapter(routes) {
-                Log.i("firebasestupid", "${it.toString()}")
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, SettingsFragment())
+                    .addToBackStack(null)
+                    .commit()
             }
         }.addOnFailureListener{
             Log.e("firebasestupid", "Error getting data", it)
