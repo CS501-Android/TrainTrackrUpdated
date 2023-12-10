@@ -35,9 +35,9 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_route, container, false)
-        val submitBtn = view.findViewById<Button>(R.id.submit_button_add_route)
-        val topic = view.findViewById<EditText>(R.id.topic_edit_text)
-        val review = view.findViewById<EditText>(R.id.review_edit_text)
+        val submitBtn = view.findViewById<Button>(R.id.submit_route_button)
+        val topic = view.findViewById<EditText>(R.id.title_input_field_routes)
+        val review = view.findViewById<EditText>(R.id.review_input_field_routes)
         auth = Firebase.auth
         database = Firebase.database.reference
 
