@@ -33,7 +33,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/sample_notification"
+        android:id="@+id/review_item_layout"
         android:layout_width="370sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
