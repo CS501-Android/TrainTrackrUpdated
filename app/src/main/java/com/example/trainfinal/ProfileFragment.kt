@@ -88,7 +88,7 @@ class ProfileFragment : Fragment() {
             }
             recyclerView.adapter = ReviewAdapter(routes) {
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, routePage())
+                    .replace(R.id.fragment_container, RoutePage.newInstance(it?.routeId.toString()))
                     .addToBackStack(null)
                     .commit()
             }
