@@ -1,6 +1,8 @@
 package com.example.trainfinal
 
+import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -15,9 +17,20 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
+
+@Suppress("DEPRECATION")
 class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
+    private lateinit var retrofit: Retrofit
+    private lateinit var weatherService: WeatherService
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +43,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         val mapView = childFragmentManager.findFragmentById(R.id.mapFragment) as SupportMapFragment
         mapView.getMapAsync(this)
 
+        doAsync{
+            getWeatherData()
+        }.execute()
         return view
     }
 
@@ -64,7 +80,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             collapsiblePopUp.layoutParams = layoutParams
         }
 
-        comingFromText.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+        comingFromText.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 // The keyboard is being shown
                 goingToDropDown.visibility = View.VISIBLE
@@ -73,6 +89,37 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             } else {
                 // The keyboard is being hidden
             }
+        }
+    }
+
+    private fun getWeatherData() {
+        retrofit = Retrofit
+            .Builder()
+            .baseUrl("http://api.openweathermap.org/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
+        weatherService = retrofit.create(WeatherService::class.java)
+
+        val x: Call<WeatherResponse> = weatherService.reverse(51.5098, -0.1180)
+
+        x.enqueue(object : Callback<WeatherResponse> {
+            override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
+                Log.i("weatherapp", t.toString())
+            }
+
+            override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
+                Log.i("weatherapp", response.body().toString())
+            }
+
         })
     }
+    class doAsync(val handler: () -> Unit) : AsyncTask<Void, Void, Void>() {
+        override fun doInBackground(vararg params: Void?): Void? {
+            handler()
+            return null
+        }
+    }
 }
+
+
