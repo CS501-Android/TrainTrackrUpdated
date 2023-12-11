@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -28,6 +29,7 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
+    private lateinit var stopsRecyclerView: RecyclerView
     private var userData: User? = null
     private var routeData: HashMap<String, Route?> = HashMap<String, Route?>()
     private var rating = 0;
@@ -43,6 +45,8 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
         val topic = view.findViewById<EditText>(R.id.title_input_field_routes)
         val review = view.findViewById<EditText>(R.id.review_input_field_routes)
         val stopBtn = view.findViewById<Button>(R.id.add_stop_button)
+        stopsRecyclerView = view.findViewById(R.id.routeStops)
+
         auth = Firebase.auth
         database = Firebase.database.reference
         // Could be implemented better
@@ -74,10 +78,10 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
                 .commit()
         }
 
-        Log.e("firebasestupid", viewModel.getData().toString())
 
         getUserInformation(auth!!.currentUser!!.uid, database)
         getRoutes(database)
+        updateRecycler()
 
         val mapView = childFragmentManager.findFragmentById(R.id.mapFragmentRoutes) as SupportMapFragment
         mapView.getMapAsync(this)
@@ -134,6 +138,17 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
             }
         }.addOnFailureListener{
             Log.e("firebasestupid", "Error getting data", it)
+        }
+    }
+
+    private fun updateRecycler() {
+        if (viewModel.getData() != null) {
+            stopsRecyclerView.adapter = RouteStopAdapter(viewModel.getData()!!.toMutableList()) {
+                val data = viewModel.getData()
+                data?.remove(it)
+                viewModel.updateData(data!!)
+                updateRecycler()
+            }
         }
     }
 

@@ -31,7 +31,7 @@ class RouteStop : Fragment() {
         submitBtn = view.findViewById(R.id.submit_stop)
 
         submitBtn.setOnClickListener {
-            var stopList: ArrayList<RouteStops>? = ArrayList<RouteStops>()
+            var stopList: ArrayList<RouteStops>? = ArrayList()
             if (viewModel.getData() != null) stopList = viewModel.getData()
             val newStop = RouteStops(
                 title.text.toString(),

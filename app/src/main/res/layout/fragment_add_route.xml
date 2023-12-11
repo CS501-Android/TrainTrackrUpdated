@@ -167,6 +167,12 @@
                 android:textSize="14sp"
                 app:cornerRadius="4sp" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/routeStops"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/mapFragmentRoutes"
                 class="com.google.android.gms.maps.SupportMapFragment"

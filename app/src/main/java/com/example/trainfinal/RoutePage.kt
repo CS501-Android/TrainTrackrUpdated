@@ -83,7 +83,9 @@ class RoutePage : Fragment() {
                     routeTitle.text = value?.routeTitle.toString()
                     routeDescription.text = value?.routeDescription
                     routeStops = value?.stops
-                    routeRecyclerView.adapter = RouteStopAdapter(value!!.stops)
+                    routeRecyclerView.adapter = RouteStopAdapter(value!!.stops) {
+                        // Nothing
+                    }
                 }
             }
         }.addOnFailureListener{
