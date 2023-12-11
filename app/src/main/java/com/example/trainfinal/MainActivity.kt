@@ -8,6 +8,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
+import androidx.core.view.get
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -54,6 +56,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val pages = arrayListOf("trips", "map", "profile", "route", "settings")
 
         if (!hasPerms(baseContext)) {
             activityResultLauncher.launch(requiredPerms)
@@ -96,6 +99,7 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
 
     private fun navigateToHome() {
         val fragmentManager = supportFragmentManager
