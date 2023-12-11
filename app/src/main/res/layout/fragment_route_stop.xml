@@ -38,7 +38,7 @@
             android:layout_height="50sp"
             android:layout_marginLeft="20sp"
             android:ems="10"
-            android:hint="120.984..."
+            android:hint="Insane Route!"
             android:inputType="text" />
 
         <TextView
