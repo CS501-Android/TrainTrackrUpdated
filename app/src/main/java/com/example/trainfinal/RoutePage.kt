@@ -16,6 +16,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
 class RoutePage : Fragment() {
     private lateinit var auth: FirebaseAuth
@@ -26,6 +27,7 @@ class RoutePage : Fragment() {
     private lateinit var favoriteBtn: ImageView
     private var routeStops: MutableList<RouteStops>? = ArrayList()
     private var routeId: String? = null
+    private var isFavorite: Boolean? = null
     private var userData: User? = null
     private var routeData: HashMap<String, Route?> = HashMap<String, Route?>()
 
@@ -33,6 +35,7 @@ class RoutePage : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             routeId = it.getString(ARG_PARAM1)
+            isFavorite = it.getBoolean(ARG_PARAM2)
         }
     }
 
@@ -51,12 +54,17 @@ class RoutePage : Fragment() {
         getUserInformation(auth.currentUser!!.uid, database)
         getRoutes(database)
 
+        if (isFavorite == true)
+            favoriteBtn.setImageResource(R.drawable.star_filled)
+
         // Set favorite
         favoriteBtn.setOnClickListener {
             if (userData!!.notification.contains(routeId)) {
                 userData!!.notification.remove(routeId)
+                favoriteBtn.setImageResource(R.drawable.star_hollow)
             } else {
                 userData!!.notification.add(routeId.toString())
+                favoriteBtn.setImageResource(R.drawable.star_filled)
             }
             Util.updateUser(auth.currentUser!!.uid, userData, database)
         }
@@ -94,10 +102,11 @@ class RoutePage : Fragment() {
     }
     companion object {
         @JvmStatic
-        fun newInstance(routeId: String) =
+        fun newInstance(routeId: String, isFavorite: Boolean) =
             RoutePage().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, routeId)
+                    putBoolean(ARG_PARAM2, isFavorite)
                 }
             }
     }

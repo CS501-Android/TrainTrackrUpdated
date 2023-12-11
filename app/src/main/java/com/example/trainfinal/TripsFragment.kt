@@ -92,16 +92,16 @@ class TripsFragment : Fragment() {
                 Log.i("firebasestupid2", routes.toString())
             }
 
-            recommendationRecyclerView.adapter = ReviewAdapter(routes) {
+            recommendationRecyclerView.adapter = ReviewAdapter(routes, false) {
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, RoutePage.newInstance(it?.routeId.toString()))
+                    .replace(R.id.fragment_container, RoutePage.newInstance(it?.routeId.toString(), false))
                     .addToBackStack(null)
                     .commit()
             }
 
-            favoriteRecyclerView.adapter = ReviewAdapter(favoriteRoute) {
+            favoriteRecyclerView.adapter = ReviewAdapter(favoriteRoute, true) {
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, RoutePage.newInstance(it?.routeId.toString()))
+                    .replace(R.id.fragment_container, RoutePage.newInstance(it?.routeId.toString(), true))
                     .addToBackStack(null)
                     .commit()
             }

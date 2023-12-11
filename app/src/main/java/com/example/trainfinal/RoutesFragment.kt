@@ -30,6 +30,7 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var stopsRecyclerView: RecyclerView
+    private var stars: ArrayList<ImageView> = ArrayList()
     private var userData: User? = null
     private var routeData: HashMap<String, Route?> = HashMap<String, Route?>()
     private var rating = 0;
@@ -50,25 +51,20 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
         auth = Firebase.auth
         database = Firebase.database.reference
         // Could be implemented better
-        view.findViewById<ImageView>(R.id.star_1).setOnClickListener {
-            rating = 1
-            /*
-                Change the image depending on selected or not.
-                You can change this into a for loop / Arraylist such that all
-                stars before is a certain way
-             */
-        }
-        view.findViewById<ImageView>(R.id.star_2).setOnClickListener {
-            rating = 2
-        }
-        view.findViewById<ImageView>(R.id.star_3).setOnClickListener {
-            rating = 3
-        }
-        view.findViewById<ImageView>(R.id.star_4).setOnClickListener {
-            rating = 4
-        }
-        view.findViewById<ImageView>(R.id.star_5).setOnClickListener {
-            rating = 5
+        stars = ArrayList()
+        stars.add(view.findViewById(R.id.star_1))
+        stars.add(view.findViewById(R.id.star_2))
+        stars.add(view.findViewById(R.id.star_3))
+        stars.add(view.findViewById(R.id.star_4))
+        stars.add(view.findViewById(R.id.star_5))
+        Log.i("firebasestupid", stars.toString())
+
+        for (i in 0..< stars.size) {
+            stars[i].setOnClickListener {
+                rating = i + 1
+                resetStar()
+                setStars(i)
+            }
         }
 
         stopBtn.setOnClickListener {
@@ -77,7 +73,6 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
                 .addToBackStack("RoutesFragment")
                 .commit()
         }
-
 
         getUserInformation(auth!!.currentUser!!.uid, database)
         getRoutes(database)
@@ -106,6 +101,9 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
             Util.updateRoute(routeData, database)
             viewModel.updateData(ArrayList())
 
+            resetStar()
+            resetRecycler()
+
             Log.e("firebasestupid", "${userData.toString()}")
         }
 
@@ -125,6 +123,7 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
     private fun getUserInformation(userId: String, database: DatabaseReference) {
         database.child("users").child(userId).get().addOnSuccessListener {
             userData = it.getValue(User::class.java)
+            Log.i("firebasestupid", userData.toString())
         }.addOnFailureListener{
             Log.e("firebasestupid", "Error getting data", it)
         }
@@ -141,6 +140,11 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    private fun resetRecycler() {
+        stopsRecyclerView.adapter = RouteStopAdapter(ArrayList()) {
+        }
+    }
+
     private fun updateRecycler() {
         if (viewModel.getData() != null) {
             stopsRecyclerView.adapter = RouteStopAdapter(viewModel.getData()!!.toMutableList()) {
@@ -149,6 +153,18 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
                 viewModel.updateData(data!!)
                 updateRecycler()
             }
+        }
+    }
+
+    private fun resetStar() {
+        for (star in stars) {
+            star.setImageResource(R.drawable.star_hollow)
+        }
+    }
+
+    private fun setStars(count: Int) {
+        for (i in 0..count) {
+            stars[i].setImageResource(R.drawable.star_filled)
         }
     }
 
