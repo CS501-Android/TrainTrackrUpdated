@@ -4,22 +4,27 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class ReviewAdapter(private val dataSet: MutableList<Route?>, val clickListener: (Route?) -> Unit):
+class ReviewAdapter(private val dataSet: MutableList<Route?>,
+                    private val isFavorite: Boolean?,
+                    val clickListener: (Route?) -> Unit):
     RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val ratingView: TextView
         val titleView: TextView
+        val star: ImageView
         val containerView: ConstraintLayout
 
         init {
             ratingView = view.findViewById(R.id.rating)
             titleView = view.findViewById(R.id.title)
             containerView = view.findViewById(R.id.containerView)
+            star = view.findViewById(R.id.star)
         }
     }
 
@@ -39,6 +44,9 @@ class ReviewAdapter(private val dataSet: MutableList<Route?>, val clickListener:
         viewHolder.ratingView.text = dataSet[position]?.rating.toString()
         viewHolder.titleView.text = dataSet[position]?.routeTitle
         viewHolder?.containerView?.setOnClickListener { clickListener(dataSet[position]) }
+        if (isFavorite != null && isFavorite == true) {
+            viewHolder.star.setImageResource(R.drawable.star_filled)
+        }
         Log.i("firebasedataset", "${dataSet[position]}")
     }
 

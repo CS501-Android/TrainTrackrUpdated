@@ -86,9 +86,9 @@ class ProfileFragment : Fragment() {
                     routes.add(it.getValue(Route::class.java))
                 }
             }
-            recyclerView.adapter = ReviewAdapter(routes) {
+            recyclerView.adapter = ReviewAdapter(routes, null) {
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, RoutePage.newInstance(it?.routeId.toString()))
+                    .replace(R.id.fragment_container, RoutePage.newInstance(it?.routeId.toString(), false))
                     .addToBackStack(null)
                     .commit()
             }
