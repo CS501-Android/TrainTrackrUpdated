@@ -9,7 +9,9 @@ import kotlinx.coroutines.launch
 
 class TrainRouteViewModel : ViewModel() {
     private val _trainRoutes = MutableLiveData<TrainRouteResponse>()
-    val trainRoutes: LiveData<TrainRouteResponse> = _trainRoutes
+    private val trainRoutes: LiveData<TrainRouteResponse> = _trainRoutes
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
 
     fun fetchTrainRoutes(fromPlace: String, toPlace: String, time: String, date: String) {
         viewModelScope.launch {
@@ -26,6 +28,12 @@ class TrainRouteViewModel : ViewModel() {
         }
     }
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> = _error
+    fun getRoutes(): TrainRouteResponse? {
+        return trainRoutes.value
+    }
+
+    fun getError(): String? {
+        return _error.value
+    }
+
 }

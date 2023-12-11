@@ -84,6 +84,7 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
 
         submitBtn.setOnClickListener {
             if (rating == 0) return@setOnClickListener
+            if (viewModel.getData() == null || viewModel.getData()?.size == 0) return@setOnClickListener
 
             val topicText = topic.text.toString()
             val reviewText = review.text.toString()
@@ -99,6 +100,8 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
 
             Util.updateUser(auth!!.currentUser!!.uid, userData, database)
             Util.updateRoute(routeData, database)
+            viewModel.updateData(ArrayList())
+
             Log.e("firebasestupid", "${userData.toString()}")
         }
 

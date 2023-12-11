@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -30,6 +31,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var retrofit: Retrofit
     private lateinit var weatherService: WeatherService
+    private val viewModel: TrainRouteViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -44,7 +46,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         mapView.getMapAsync(this)
 
         doAsync{
-            getWeatherData()
+            getWeatherData(42.4383, -71.1856)
+            viewModel.fetchTrainRoutes("US", "CAD", "00:00:00","2021-01-01")
+            Log.i("weatherapp", "Error: ${viewModel.getError().toString()}")
+            Log.i("weatherapp", "Routes: ${viewModel.getRoutes().toString()}")
         }.execute()
         return view
     }
@@ -92,7 +97,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    private fun getWeatherData() {
+    private fun getWeatherData(lat: Double, lon: Double) {
         retrofit = Retrofit
             .Builder()
             .baseUrl("http://api.openweathermap.org/")
@@ -101,7 +106,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         weatherService = retrofit.create(WeatherService::class.java)
 
-        val x: Call<WeatherResponse> = weatherService.reverse(51.5098, -0.1180)
+        val x: Call<WeatherResponse> = weatherService.reverse(lon, lat)
 
         x.enqueue(object : Callback<WeatherResponse> {
             override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
@@ -109,7 +114,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
 
             override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
-                Log.i("weatherapp", response.body().toString())
+                Log.i("weatherapp", response.body()?.weather?.get(0).toString())
             }
 
         })
