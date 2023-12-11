@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -28,6 +30,8 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
     private lateinit var database: DatabaseReference
     private var userData: User? = null
     private var routeData: HashMap<String, Route?> = HashMap<String, Route?>()
+    private var rating = 0;
+    private val viewModel: StopViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +44,27 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
         val review = view.findViewById<EditText>(R.id.review_input_field_routes)
         auth = Firebase.auth
         database = Firebase.database.reference
+        // Could be implemented better
+        view.findViewById<ImageView>(R.id.star_1).setOnClickListener {
+            rating = 1
+            /*
+                Change the image depending on selected or not.
+                You can change this into a for loop / Arraylist such that all
+                stars before is a certain way
+             */
+        }
+        view.findViewById<ImageView>(R.id.star_2).setOnClickListener {
+            rating = 2
+        }
+        view.findViewById<ImageView>(R.id.star_3).setOnClickListener {
+            rating = 3
+        }
+        view.findViewById<ImageView>(R.id.star_4).setOnClickListener {
+            rating = 4
+        }
+        view.findViewById<ImageView>(R.id.star_5).setOnClickListener {
+            rating = 5
+        }
 
         getUserInformation(auth!!.currentUser!!.uid, database)
         getRoutes(database)
@@ -48,11 +73,15 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
         mapView.getMapAsync(this)
 
         submitBtn.setOnClickListener {
+            if (rating == 0) return@setOnClickListener
+
             val topicText = topic.text.toString()
             val reviewText = review.text.toString()
+            val newRoute = Route(UUID.randomUUID().toString(),
+                topicText, reviewText, null, rating)
+            rating = 0
             topic.setText("")
             review.setText("")
-            val newRoute = Route(UUID.randomUUID().toString(), topicText, reviewText)
             userData?.posts?.add(newRoute.routeId)
             routeData[newRoute.routeId] = newRoute
 
