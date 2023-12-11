@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containerView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5sp">
 
     <LinearLayout
         android:id="@+id/layout_rating"
@@ -19,9 +20,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="30sp"
-            android:fontFamily="@font/epilogue"
+            android:fontFamily="@font/comfortaa"
             android:text="Rating"
-            android:textSize="18sp" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/title"
@@ -29,9 +31,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="30sp"
-            android:fontFamily="@font/epilogue"
+            android:layout_marginTop="3sp"
+            android:fontFamily="@font/catamaran_light"
             android:text="South Station to North"
-            android:textSize="18sp" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/star"
@@ -41,6 +45,7 @@
             android:translationX="10sp"
             android:translationY="-2sp"
             app:srcCompat="@drawable/star_hollow" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

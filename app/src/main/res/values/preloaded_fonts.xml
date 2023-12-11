@@ -2,8 +2,13 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/arsenal_bold</item>
+        <item>@font/catamaran_light</item>
+        <item>@font/comfortaa</item>
+        <item>@font/comfortaa_bold</item>
         <item>@font/comic_neue_bold</item>
         <item>@font/epilogue</item>
         <item>@font/mandali</item>
+        <item>@font/questrial</item>
+        <item>@font/shanti</item>
     </array>
 </resources>

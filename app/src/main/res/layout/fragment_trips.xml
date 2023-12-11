@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20sp"
             android:layout_marginTop="20sp"
+            android:fontFamily="@font/comfortaa"
             android:text="Favorite Trips"
             android:textSize="24sp" />
 
@@ -30,51 +31,6 @@
             android:layout_marginStart="20sp"
             android:layout_marginTop="10sp"
             android:layout_marginEnd="20sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/review_item_layout"
-        android:layout_width="370sp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="372dp"
-        android:background="@drawable/rounded_panel_light"
-        android:orientation="horizontal"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible">
-
-        <ImageButton
-            android:id="@+id/settings_image_button"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_gravity="center"
-            android:backgroundTint="#00FFFFFF"
-            app:srcCompat="@drawable/settings" />
-
-        <TextView
-            android:id="@+id/train_notification_text"
-            android:layout_width="240sp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingLeft="14sp"
-            android:text="South Station to North Station"
-            android:textSize="16sp" />
-
-        <ImageButton
-            android:id="@+id/favorite_image_button"
-            android:layout_width="50sp"
-            android:layout_height="50sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10sp"
-            android:layout_marginBottom="2sp"
-            android:backgroundTint="#00FFFFFF"
-            app:srcCompat="@drawable/star_hollow" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -92,6 +48,7 @@
             android:layout_marginLeft="20sp"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="10sp"
+            android:fontFamily="@font/comfortaa"
             android:text="Recommended Trips"
             android:textSize="24sp" />
 
@@ -99,9 +56,9 @@
             android:id="@+id/recommend_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginStart="20sp"
-            android:layout_marginEnd="20sp" />
+            android:layout_marginEnd="20sp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
