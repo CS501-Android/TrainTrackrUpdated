@@ -64,6 +64,7 @@ class RoutePage : Fragment() {
             } else {
                 userData!!.notification.add(routeId.toString())
             }
+            Util.updateUser(auth.currentUser!!.uid, userData, database)
         }
 
         return view

@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -30,6 +31,7 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
     private var userData: User? = null
     private var routeData: HashMap<String, Route?> = HashMap<String, Route?>()
     private var rating = 0;
+    private val viewModel: StopViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
