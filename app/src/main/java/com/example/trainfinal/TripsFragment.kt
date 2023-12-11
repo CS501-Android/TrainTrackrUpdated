@@ -79,16 +79,31 @@ class TripsFragment : Fragment() {
 
     private fun getRoutes(user: User?, database: DatabaseReference) {
         var routes: MutableList<Route?> = mutableListOf()
+        var favoriteRoute: MutableList<Route?> = mutableListOf()
         database.child("routes").get().addOnSuccessListener { it ->
             val children = it!!.children
             children.forEach {
                 routeData[it.key.toString()] = it.getValue(Route::class.java)
-                routes.add(it.getValue(Route::class.java))
+                if (user!!.notification.contains(it.key.toString())) {
+                    favoriteRoute.add(it.getValue(Route::class.java))
+                } else {
+                    routes.add(it.getValue(Route::class.java))
+                }
                 Log.i("firebasestupid2", routes.toString())
             }
 
             recommendationRecyclerView.adapter = ReviewAdapter(routes) {
-                Log.i("firebasestupid", "Hello")
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, RoutePage.newInstance(it?.routeId.toString()))
+                    .addToBackStack(null)
+                    .commit()
+            }
+
+            favoriteRecyclerView.adapter = ReviewAdapter(favoriteRoute) {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, RoutePage.newInstance(it?.routeId.toString()))
+                    .addToBackStack(null)
+                    .commit()
             }
 //            val reviewAdapter = ReviewAdapter(routes)
 //            recyclerView.adapter = reviewAdapter

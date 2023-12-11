@@ -4,12 +4,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
 
 class ReviewAdapter(private val dataSet: MutableList<Route?>, val clickListener: (Route?) -> Unit):
     RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
@@ -27,15 +24,15 @@ class ReviewAdapter(private val dataSet: MutableList<Route?>, val clickListener:
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int):
-            ReviewAdapter.ViewHolder {
+            ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.review_item, viewGroup, false)
 
-        return ReviewAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(viewHolder: ReviewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element

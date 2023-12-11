@@ -42,6 +42,7 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
         val submitBtn = view.findViewById<Button>(R.id.submit_route_button)
         val topic = view.findViewById<EditText>(R.id.title_input_field_routes)
         val review = view.findViewById<EditText>(R.id.review_input_field_routes)
+        val stopBtn = view.findViewById<Button>(R.id.add_stop_button)
         auth = Firebase.auth
         database = Firebase.database.reference
         // Could be implemented better
@@ -66,6 +67,15 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
             rating = 5
         }
 
+        stopBtn.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, RouteStop())
+                .addToBackStack("RoutesFragment")
+                .commit()
+        }
+
+        Log.e("firebasestupid", viewModel.getData().toString())
+
         getUserInformation(auth!!.currentUser!!.uid, database)
         getRoutes(database)
 
@@ -78,7 +88,9 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
             val topicText = topic.text.toString()
             val reviewText = review.text.toString()
             val newRoute = Route(UUID.randomUUID().toString(),
-                topicText, reviewText, null, rating)
+                topicText, reviewText, null, rating,
+                mutableListOf(),
+                viewModel.getData()!!.toMutableList())
             rating = 0
             topic.setText("")
             review.setText("")

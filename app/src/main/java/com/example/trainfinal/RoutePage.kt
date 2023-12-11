@@ -15,14 +15,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-// TODO: Rename parameter arguments, choose names that match
 private const val ARG_PARAM1 = "param1"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RoutePage.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RoutePage : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
@@ -89,6 +83,7 @@ class RoutePage : Fragment() {
                     routeTitle.text = value?.routeTitle.toString()
                     routeDescription.text = value?.routeDescription
                     routeStops = value?.stops
+                    routeRecyclerView.adapter = RouteStopAdapter(value!!.stops)
                 }
             }
         }.addOnFailureListener{
@@ -96,15 +91,6 @@ class RoutePage : Fragment() {
         }
     }
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment routePage.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(routeId: String) =
             RoutePage().apply {
