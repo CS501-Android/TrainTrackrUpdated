@@ -76,4 +76,7 @@ dependencies {
 
     // Database
     implementation("com.google.firebase:firebase-database:20.3.0")
+
+    //Server Calls
+    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
 }
