@@ -168,10 +168,11 @@
                 app:cornerRadius="4sp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:id="@+id/routeStops"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:maxWidth="200sp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/mapFragmentRoutes"

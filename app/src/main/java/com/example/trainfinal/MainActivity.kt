@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Permission request Denied", Toast.LENGTH_LONG).show()
             else {
                 Toast.makeText(this, "Permission request Granted", Toast.LENGTH_LONG).show()
-                Thread.sleep(1000)
+                Thread.sleep(500)
                 finish()
                 startActivity(intent)
             }
