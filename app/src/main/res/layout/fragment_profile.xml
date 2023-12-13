@@ -22,9 +22,11 @@
         android:layout_height="64dp"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:fontFamily="@font/epilogue"
         android:inputType="text"
         android:text="Username"
         android:textAlignment="center"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,21 +48,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Overall Follower: " />
+            android:fontFamily="@font/comfortaa"
+            android:text="Overall Follower: "
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/posts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Overall Posts:" />
+            android:fontFamily="@font/comfortaa"
+            android:text="Overall Posts:"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Overall Stars:" />
+            android:fontFamily="@font/comfortaa"
+            android:text="Overall Stars:"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

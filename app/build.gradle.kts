@@ -1,7 +1,10 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id("com.google.secrets_gradle_plugin") version("0.6")
 }
 
 android {
@@ -16,6 +19,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+//
+//        Properties properties = Properties()
+//        properties.load(FileInputStream(project.rootProject.file("local.properties")))
+//
+//        buildConfigField "String", "API_KEY",  "\"${properties.getProperty("MAPS_API_KEY")}\"
     }
 
     buildFeatures {
