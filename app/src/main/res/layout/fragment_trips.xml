@@ -21,6 +21,7 @@
             android:layout_marginTop="30sp"
             android:fontFamily="@font/comfortaa"
             android:text="Favorite Trips"
+            android:textColor="@color/navy"
             android:textSize="24sp" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -50,6 +51,7 @@
             android:layout_marginBottom="10sp"
             android:fontFamily="@font/comfortaa"
             android:text="Recommended Trips"
+            android:textColor="@color/navy"
             android:textSize="24sp" />
 
         <androidx.recyclerview.widget.RecyclerView

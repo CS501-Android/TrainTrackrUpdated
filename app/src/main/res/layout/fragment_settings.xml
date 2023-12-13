@@ -14,7 +14,7 @@
         android:background="#00FFFFFF"
         android:fontFamily="@font/comfortaa"
         android:text="Appearance"
-        android:textColor="#000000"
+        android:textColor="@color/navy"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
         android:background="#00FFFFFF"
         android:fontFamily="@font/comfortaa"
         android:text="Account"
-        android:textColor="#000000"
+        android:textColor="@color/navy"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nav_appearance_settings" />
@@ -60,7 +60,7 @@
         android:background="#00FFFFFF"
         android:fontFamily="@font/comfortaa"
         android:text="Leave a review"
-        android:textColor="#000000"
+        android:textColor="@color/navy"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nav_account_settings" />
@@ -73,7 +73,7 @@
         android:background="#00FFFFFF"
         android:fontFamily="@font/comfortaa"
         android:text="Sign Out"
-        android:textColor="#000000"
+        android:textColor="@color/navy"
         android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nav_review_settings" />
