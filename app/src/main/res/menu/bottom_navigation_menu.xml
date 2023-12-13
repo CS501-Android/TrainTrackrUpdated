@@ -6,34 +6,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/route_even_better"
-        android:title="Map"
+        android:title="@string/null_space"
         android:visible="true" />
     <item
         android:id="@+id/nav_trips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/notifications_even_better"
-        android:title="Trip"
+        android:title="@string/null_space"
         android:visible="true" />
     <item
         android:id="@+id/nav_route"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/add_location_even_better"
-        android:title="Routes"
+        android:title="@string/null_space"
         android:visible="true" />
     <item
         android:id="@+id/nav_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/person_even_better"
-        android:title="Profile"
+        android:title="@string/null_space"
         android:visible="true" />
     <item
         android:id="@+id/nav_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/settings_even_better"
-        android:title="Setting"
+        android:title="@string/null_space"
         android:visible="true" />
 </menu>
