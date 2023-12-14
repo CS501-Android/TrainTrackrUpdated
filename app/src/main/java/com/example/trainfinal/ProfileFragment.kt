@@ -43,7 +43,7 @@ class ProfileFragment : Fragment() {
         recyclerView = view.findViewById(R.id.profileRecyclerView)
         posts = view.findViewById(R.id.posts)
         username = view.findViewById(R.id.username)
-        follower = view.findViewById(R.id.followers)
+        follower = view.findViewById(R.id.follows)
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {

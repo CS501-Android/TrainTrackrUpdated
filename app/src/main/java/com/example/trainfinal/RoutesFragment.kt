@@ -25,8 +25,7 @@ import com.google.firebase.ktx.Firebase
 import okhttp3.internal.wait
 import java.util.UUID
 
-class RoutesFragment : Fragment(), OnMapReadyCallback {
-    private lateinit var mMap: GoogleMap
+class RoutesFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var stopsRecyclerView: RecyclerView
@@ -78,9 +77,6 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
         getRoutes(database)
         updateRecycler()
 
-        val mapView = childFragmentManager.findFragmentById(R.id.mapFragmentRoutes) as SupportMapFragment
-        mapView.getMapAsync(this)
-
         submitBtn.setOnClickListener {
             if (rating == 0) return@setOnClickListener
             if (viewModel.getData() == null || viewModel.getData()?.size == 0) return@setOnClickListener
@@ -113,11 +109,6 @@ class RoutesFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(42.4383, -71.1856), 15f))
     }
 
     private fun getUserInformation(userId: String, database: DatabaseReference) {
