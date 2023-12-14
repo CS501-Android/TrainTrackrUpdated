@@ -62,6 +62,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         // Move to Belmont, MA
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(42.4383, -71.1856), 15f))
+
+        googleMap.setOnCameraIdleListener {
+            getWeatherData(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
