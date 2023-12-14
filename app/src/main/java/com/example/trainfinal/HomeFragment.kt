@@ -58,6 +58,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         // Set the map instance
         mMap = googleMap
 
+        Log.e("googlemapstupid", "hello")
+
         // Move to Belmont, MA
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(42.4383, -71.1856), 15f))
     }

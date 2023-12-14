@@ -9,6 +9,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolylineOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -18,13 +25,14 @@ import com.google.firebase.ktx.Firebase
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class RoutePage : Fragment() {
+class RoutePage : Fragment(), OnMapReadyCallback {
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
     private lateinit var routeTitle: TextView
     private lateinit var routeDescription: TextView
     private lateinit var routeRecyclerView: RecyclerView
     private lateinit var favoriteBtn: ImageView
+    private lateinit var mMap: GoogleMap
     private var routeStops: MutableList<RouteStops>? = ArrayList()
     private var routeId: String? = null
     private var isFavorite: Boolean? = null
@@ -51,6 +59,10 @@ class RoutePage : Fragment() {
         routeDescription = view.findViewById(R.id.route_description)
         routeRecyclerView = view.findViewById(R.id.route_recycler)
         favoriteBtn = view.findViewById(R.id.star)
+
+        val mapView = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
+        mapView.getMapAsync(this)
+
         getUserInformation(auth.currentUser!!.uid, database)
         getRoutes(database)
 
@@ -92,8 +104,46 @@ class RoutePage : Fragment() {
                     routeDescription.text = value?.routeDescription
                     routeStops = value?.stops
                     routeRecyclerView.adapter = RouteStopAdapter(value!!.stops) {
-                        // Nothing
+                        mMap.moveCamera(
+                            CameraUpdateFactory
+                                .newLatLngZoom(
+                                    LatLng(
+                                        it.lat!!.toDouble(),
+                                        it.long!!.toDouble()
+                                    ), 15f
+                                )
+                        )
                     }
+                }
+
+                val currentData = routeData[routeId]
+
+                val polylineOptions = PolylineOptions()
+                if (currentData?.stops != null && currentData?.stops.size != 0) {
+                    for (stop in currentData.stops) {
+                        mMap.addMarker(
+                            MarkerOptions()
+                                .position(LatLng(stop.lat!!.toDouble(), stop.long!!.toDouble()))
+                                .title(stop.title)
+                        )
+
+                        polylineOptions.add(
+                            LatLng(stop.lat!!.toDouble(), stop.long!!.toDouble())
+                        )
+                    }
+
+                    // Line Outline
+                    mMap.addPolyline(polylineOptions)
+
+                    mMap.moveCamera(
+                        CameraUpdateFactory
+                            .newLatLngZoom(
+                                LatLng(
+                                    currentData.stops[0].lat!!.toDouble(),
+                                    currentData.stops[0].long!!.toDouble()
+                                ), 15f
+                            )
+                    )
                 }
             }
         }.addOnFailureListener{
@@ -109,5 +159,14 @@ class RoutePage : Fragment() {
                     putBoolean(ARG_PARAM2, isFavorite)
                 }
             }
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        // Set the map instance
+        mMap = googleMap
+
+        // Move to Belmont, MA | Default if no stops were added.
+        googleMap.moveCamera(CameraUpdateFactory
+            .newLatLngZoom(LatLng(42.4383, -71.1856), 15f))
     }
 }
