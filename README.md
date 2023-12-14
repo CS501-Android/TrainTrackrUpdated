@@ -1,5 +1,11 @@
 # TrainTrackr
 
+## About US
+**Why did we choose to create this application**
+
+**Who is our target demographic**
+
+
 ## API Utilize 
 - **Google Map API**
 Google Map API was utilized to render current user locations. On top of such, it was used to portray potential stops and user-inputted stops within the Google Map.
