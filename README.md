@@ -4,9 +4,11 @@
 - **Google Map API**
 Google Map API was utilized to render current user locations. On top of such, it was used to portray potential stops and user-inputted stops within the Google Map.
 Given the user input, it'll create routes and stopping points of the Trip detail.
+
 - **Firebase API**
 We've utilized the Firebase Email/Password authentication method for our Login. We plan to add another instance with Google or other social media Login as we plan to integrate
 them with our application so you can share the information on twitter or Instagram. Firebase was also used as our Database explained later.
+
 - **WeatherAPI**
 When in doubt, use Weather API. All jokes aside, with our application, weather API makes a lot of sense. Currently, the way to use weather API is simply just a Retrofit client
 being fed LatLong information from Google Map on Idle, updating given the location. In the future implementation, we've plan to utilize it for future planning instead of current.
@@ -59,6 +61,7 @@ data class Cloud (
     @SerializedName("all") val all: Float,
 )
 ```
+
 - **SNCF (Implementing)**
 TBD
 
