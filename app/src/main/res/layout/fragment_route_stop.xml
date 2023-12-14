@@ -11,16 +11,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
-            android:layout_marginTop="20sp"
             android:layout_marginBottom="10sp"
             android:fontFamily="@font/comfortaa"
             android:text="Title"
             android:textColor="@color/black"
+            android:layout_marginTop="20sp"
             android:textSize="20sp" />
 
         <EditText
@@ -90,6 +91,32 @@
             android:backgroundTint="@color/blue"
             android:fontFamily="@font/epilogue"
             android:text="+\t\tSubmit Stop"
+            app:cornerRadius="4sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:layout_marginBottom="20sp"
+            android:ems="10"
+            android:fontFamily="@font/mandali"
+            android:hint="London..."
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/searchLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/blue"
+            android:fontFamily="@font/epilogue"
+            android:text="Search Location"
             app:cornerRadius="4sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
