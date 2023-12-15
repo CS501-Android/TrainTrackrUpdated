@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40sp"
                 android:layout_marginTop="20sp"
-                android:fontFamily="@font/mandali"
+                android:fontFamily="@font/aleo_light"
                 android:text="Latitude:"
                 android:textColor="@color/navy"
                 android:textSize="18sp" />
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40sp"
                 android:layout_marginTop="20sp"
-                android:fontFamily="@font/mandali"
+                android:fontFamily="@font/aleo_light"
                 android:text="Longitude:"
                 android:textColor="@color/navy"
                 android:textSize="18sp" />

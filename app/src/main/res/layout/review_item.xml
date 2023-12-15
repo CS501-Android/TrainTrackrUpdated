@@ -20,10 +20,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="30sp"
-            android:fontFamily="@font/comfortaa"
+            android:fontFamily="@font/mandali"
             android:text="Rating"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/title"
@@ -31,8 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="30sp"
-            android:layout_marginTop="1sp"
-            android:fontFamily="@font/catamaran_light"
+            android:layout_marginTop="2sp"
+            android:fontFamily="@font/aleo_light"
             android:text="South Station to North"
             android:textColor="@color/black"
             android:textSize="20sp" />

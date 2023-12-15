@@ -19,8 +19,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20sp"
             android:layout_marginTop="30sp"
+            android:layout_marginBottom="1sp"
+            android:background="@drawable/panel_text_input_fav_routes"
             android:fontFamily="@font/comfortaa"
-            android:text="Favorite Trips"
+            android:paddingLeft="10sp"
+            android:paddingRight="20sp"
+            android:text="FavRoutes:"
             android:textColor="@color/navy"
             android:textSize="24sp" />
 
@@ -49,8 +53,11 @@
             android:layout_marginLeft="20sp"
             android:layout_marginTop="40sp"
             android:layout_marginBottom="10sp"
+            android:background="@drawable/panel_text_input_decoration"
             android:fontFamily="@font/comfortaa"
-            android:text="Recommended Trips"
+            android:paddingLeft="10sp"
+            android:paddingRight="20sp"
+            android:text="Recommended:"
             android:textColor="@color/navy"
             android:textSize="24sp" />
 
@@ -60,6 +67,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="20sp"
             android:layout_marginEnd="20sp"
+            android:paddingTop="4sp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 

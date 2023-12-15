@@ -48,8 +48,8 @@ class ProfileFragment : Fragment() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 userData = dataSnapshot.getValue<User>()
-                posts.text = "Overall post: ${userData?.posts?.count()}"
-                follower.text = "Overall post: ${userData?.followers?.count()}"
+                posts.text = "${userData?.posts?.count()}"
+                follower.text = "${userData?.followers?.count()}"
                 username.text = "${userData?.email}"
 
                 getRoutes(userData, database)
