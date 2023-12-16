@@ -70,20 +70,19 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val goingToDropDown = view.findViewById<CardView>(R.id.additional_popup)
-        val comingFromText = view.findViewById<EditText>(R.id.location_lookup_text_start)
+
         var collapsiblePopUp = view.findViewById<CardView>(R.id.popup_collapsible)
         val bpCollapse = view.findViewById<Button>(R.id.button_collapsible)
-        val verticalPopupLayout = view.findViewById<LinearLayout>(R.id.outer_lookup_layout)
-        val horizontalPartOfThing = view.findViewById<LinearLayout>(R.id.horizontal_bar_search_location)
-        val layoutParamsHorizontal = horizontalPartOfThing.layoutParams
-
-        layoutParamsHorizontal.height = 0
-        horizontalPartOfThing.layoutParams = layoutParamsHorizontal
+//        val verticalPopupLayout = view.findViewById<LinearLayout>(R.id.outer_lookup_layout)
+//        val horizontalPartOfThing = view.findViewById<LinearLayout>(R.id.horizontal_bar_search_location)
+//        val layoutParamsHorizontal = horizontalPartOfThing.layoutParams
+//
+//        layoutParamsHorizontal.height = 0
+//        horizontalPartOfThing.layoutParams = layoutParamsHorizontal
 
         bpCollapse.setOnClickListener {
             val layoutParams = collapsiblePopUp.layoutParams
-            if (layoutParams.height != 100) layoutParams.height = 100 else layoutParams.height = 820
+            if (layoutParams.height != 90) layoutParams.height = 90 else layoutParams.height = 820
             if (view.findViewById<LinearLayout>(R.id.layout_bottom_home_details).visibility == View.INVISIBLE)
                 view.findViewById<LinearLayout>(R.id.layout_bottom_home_details).visibility = View.VISIBLE
                 else view.findViewById<LinearLayout>(R.id.layout_bottom_home_details).visibility = View.INVISIBLE
@@ -91,16 +90,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             collapsiblePopUp.layoutParams = layoutParams
         }
 
-        comingFromText.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                // The keyboard is being shown
-                goingToDropDown.visibility = View.VISIBLE
-                layoutParamsHorizontal.height = 200
-                horizontalPartOfThing.layoutParams = layoutParamsHorizontal
-            } else {
-                // The keyboard is being hidden
-            }
-        }
+
     }
 
     private fun getWeatherData(lat: Double, lon: Double) {
