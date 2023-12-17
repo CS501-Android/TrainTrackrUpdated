@@ -14,6 +14,7 @@
         tools:layout_editor_absoluteY="611dp" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -186,10 +187,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/routeStops"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="200dp"
         android:maxWidth="200sp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="468dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
