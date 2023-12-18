@@ -63,9 +63,6 @@ class RoutePage : Fragment(), OnMapReadyCallback {
         val mapView = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
         mapView.getMapAsync(this)
 
-        getUserInformation(auth.currentUser!!.uid, database)
-        getRoutes(database)
-
         if (isFavorite == true)
             favoriteBtn.setImageResource(R.drawable.star_filled)
 
@@ -119,7 +116,7 @@ class RoutePage : Fragment(), OnMapReadyCallback {
                 val currentData = routeData[routeId]
 
                 val polylineOptions = PolylineOptions()
-                if (currentData?.stops != null && currentData?.stops.size != 0) {
+                if (currentData?.stops != null && currentData.stops.size != 0) {
                     for (stop in currentData.stops) {
                         mMap.addMarker(
                             MarkerOptions()
@@ -128,7 +125,7 @@ class RoutePage : Fragment(), OnMapReadyCallback {
                         )
 
                         polylineOptions.add(
-                            LatLng(stop.lat!!.toDouble(), stop.long!!.toDouble())
+                            LatLng(stop.lat.toDouble(), stop.long.toDouble())
                         )
                     }
 
@@ -168,5 +165,8 @@ class RoutePage : Fragment(), OnMapReadyCallback {
         // Move to Belmont, MA | Default if no stops were added.
         googleMap.moveCamera(CameraUpdateFactory
             .newLatLngZoom(LatLng(42.4383, -71.1856), 15f))
+
+        getUserInformation(auth.currentUser!!.uid, database)
+        getRoutes(database)
     }
 }
