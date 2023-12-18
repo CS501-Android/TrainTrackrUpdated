@@ -153,7 +153,6 @@ class RoutesFragment : Fragment() {
         routesRecyclerView.adapter = adapter
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
