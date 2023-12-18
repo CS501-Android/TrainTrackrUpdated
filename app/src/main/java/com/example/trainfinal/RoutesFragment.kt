@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,12 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.UUID
+import com.google.gson.Gson
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Callback
+import okhttp3.Response
+import java.io.IOException
 
 class RoutesFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
@@ -27,6 +34,11 @@ class RoutesFragment : Fragment() {
     private var routeData: HashMap<String, Route?> = HashMap<String, Route?>()
     private var rating = 0;
     private val viewModel: StopViewModel by activityViewModels()
+    private lateinit var originEditText: EditText
+    private lateinit var destinationEditText: EditText
+    private lateinit var searchRouteButton: Button
+    private lateinit var routesRecyclerView: RecyclerView
+    private val client = OkHttpClient()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +51,17 @@ class RoutesFragment : Fragment() {
         val review = view.findViewById<EditText>(R.id.review_input_field_routes)
         val stopBtn = view.findViewById<Button>(R.id.add_stop_button)
         stopsRecyclerView = view.findViewById(R.id.routeStops)
+
+        originEditText = view.findViewById(R.id.origin_input_field)
+        destinationEditText = view.findViewById(R.id.destination_input_field)
+        searchRouteButton = view.findViewById(R.id.search_route_button)
+        routesRecyclerView = view.findViewById(R.id.routes_recycler_view)
+
+        searchRouteButton.setOnClickListener {
+            val origin = originEditText.text.toString()
+            val destination = destinationEditText.text.toString()
+            searchRoute(origin, destination)
+        }
 
         auth = Firebase.auth
         database = Firebase.database.reference
@@ -97,6 +120,37 @@ class RoutesFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun searchRoute(origin: String, destination: String) {
+        val apiKey = "AIzaSyAl7sZkZxiwjFOQzA6nYyY0sucEmjTP-Ig"
+        val url = "https://maps.googleapis.com/maps/api/directions/json?origin=$origin&destination=$destination&mode=transit&transit_mode=train&key=$apiKey"
+
+        val request = Request.Builder().url(url).build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, "Failed to fetch routes: ${e.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: Response) {
+                val responseData = response.body?.string()
+                response.body?.close()
+                val gson = Gson()
+                val directionsResult = gson.fromJson(responseData, DirectionsApiResponse::class.java)
+
+                activity?.runOnUiThread {
+                    updateUIWithRoutes(directionsResult.routes)
+                }
+            }
+        })
+    }
+
+    private fun updateUIWithRoutes(routes: List<Route>) {
+        val adapter = RoutesAdapter(routes)
+        routesRecyclerView.adapter = adapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
