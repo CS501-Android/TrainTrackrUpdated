@@ -31,7 +31,7 @@ class RoutesFragment : Fragment() {
     private lateinit var stopsRecyclerView: RecyclerView
     private var stars: ArrayList<ImageView> = ArrayList()
     private var userData: User? = null
-    private var routeData: HashMap<String, Route?> = HashMap<String, Route?>()
+    private var routeData: HashMap<String, Route?> = HashMap()
     private var rating = 0;
     private val viewModel: StopViewModel by activityViewModels()
     private lateinit var originEditText: EditText
@@ -147,8 +147,8 @@ class RoutesFragment : Fragment() {
         })
     }
 
-    private fun updateUIWithRoutes(routes: List<Route>) {
-        val adapter = RoutesAdapter(routes) { route ->
+    private fun updateUIWithRoutes(googleMapsRoutes: List<GoogleMapsRoute>) {
+        val adapter = RoutesAdapter(googleMapsRoutes) { route ->
         }
         routesRecyclerView.adapter = adapter
     }

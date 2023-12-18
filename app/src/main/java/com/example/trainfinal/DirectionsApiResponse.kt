@@ -1,7 +1,7 @@
 package com.example.trainfinal
 
 data class DirectionsApiResponse(
-    val routes: List<Route>,
+    val routes: List<GoogleMapsRoute>,
     val status: String
 )
 
