@@ -17,12 +17,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20sp"
+            android:layout_marginTop="20sp"
             android:layout_marginBottom="10sp"
             android:fontFamily="@font/comfortaa"
             android:text="Title"
             android:textColor="@color/black"
-            android:layout_marginTop="20sp"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/input_field_title"
@@ -45,7 +45,7 @@
             android:fontFamily="@font/comfortaa"
             android:text="Latitude "
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/input_field_lat_routes"
@@ -67,7 +67,7 @@
             android:fontFamily="@font/comfortaa"
             android:text="Longitude"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/input_field_long_routes"
@@ -88,9 +88,10 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="20sp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/blue"
-            android:fontFamily="@font/epilogue"
+            android:backgroundTint="@color/navy"
+            android:fontFamily="@font/mandali"
             android:text="+\t\tSubmit Stop"
+            android:textSize="18sp"
             app:cornerRadius="4sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -114,9 +115,10 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="20sp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/blue"
-            android:fontFamily="@font/epilogue"
+            android:backgroundTint="@color/navy"
+            android:fontFamily="@font/mandali"
             android:text="Search Location"
+            android:textSize="18sp"
             app:cornerRadius="4sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -74,12 +75,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         var collapsiblePopUp = view.findViewById<CardView>(R.id.popup_collapsible)
         val bpCollapse = view.findViewById<Button>(R.id.button_collapsible)
         weatherText = view.findViewById(R.id.weatherText)
-//        val verticalPopupLayout = view.findViewById<LinearLayout>(R.id.outer_lookup_layout)
-//        val horizontalPartOfThing = view.findViewById<LinearLayout>(R.id.horizontal_bar_search_location)
-//        val layoutParamsHorizontal = horizontalPartOfThing.layoutParams
-//
-//        layoutParamsHorizontal.height = 0
-//        horizontalPartOfThing.layoutParams = layoutParamsHorizontal
 
         bpCollapse.setOnClickListener {
             val layoutParams = collapsiblePopUp.layoutParams
@@ -109,9 +104,15 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
 
             override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
+                val weatherDescription = response.body()?.weather?.get(0)?.description
                 val kTemp = response.body()?.main?.temp
                 val fTemp = ((kTemp!! - 273.15)  * 9 / 5 + 32)
-                weatherText.text = "The weather is ${round(fTemp * 100) / 100}F"
+
+                when (weatherDescription?.get(weatherDescription.length - 1)?.toChar()) {
+                    'y' -> weatherText.text = "${round(fTemp)}°F\t | \tIt's a ${weatherDescription} one today!"
+                    else -> weatherText.text = "${round(fTemp)}°F\t | \tIt's a ${weatherDescription}y one today!"
+                }
+
             }
 
         })
@@ -122,6 +123,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             return null
         }
     }
+
 }
 
 
