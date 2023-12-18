@@ -50,7 +50,6 @@ class RoutesFragment : Fragment() {
         val topic = view.findViewById<EditText>(R.id.title_input_field_routes)
         val review = view.findViewById<EditText>(R.id.review_input_field_routes)
         val stopBtn = view.findViewById<Button>(R.id.add_stop_button)
-        stopsRecyclerView = view.findViewById(R.id.routeStops)
 
         originEditText = view.findViewById(R.id.origin_input_field)
         destinationEditText = view.findViewById(R.id.destination_input_field)
@@ -149,9 +148,11 @@ class RoutesFragment : Fragment() {
     }
 
     private fun updateUIWithRoutes(routes: List<Route>) {
-        val adapter = RoutesAdapter(routes)
+        val adapter = RoutesAdapter(routes) { route ->
+        }
         routesRecyclerView.adapter = adapter
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

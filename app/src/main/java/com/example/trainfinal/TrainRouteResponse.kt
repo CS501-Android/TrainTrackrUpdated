@@ -14,10 +14,10 @@ data class Itinerary(
     @SerializedName("duration") val duration: Long?,
     @SerializedName("startTime") val startTime: Long?,
     @SerializedName("endTime") val endTime: Long?,
-    @SerializedName("legs") val legs: List<Leg>?
+    @SerializedName("legs") val legs: List<Legs>?
 )
 
-data class Leg(
+data class Legs(
     @SerializedName("startTime") val startTime: Long?,
     @SerializedName("endTime") val endTime: Long?,
     @SerializedName("mode") val mode: String?,

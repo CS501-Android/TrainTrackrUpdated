@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20sp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="20sp"
+            android:fontFamily="@font/comfortaa"
+            android:text="Route Title"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <View
+            android:id="@+id/view_separator_top_stops"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:layout_marginHorizontal="30sp"
+            android:background="@color/navy" />
+
+        <TextView
+            android:id="@+id/startAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40sp"
+            android:layout_marginTop="20sp"
+            android:fontFamily="@font/aleo_light"
+            android:text="Start Address"
+            android:textColor="@color/navy"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/endAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40sp"
+            android:layout_marginTop="20sp"
+            android:text="End Address"
+            android:textColor="@color/navy"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/view_separator_end_stops"
+            android:layout_width="match_parent"
+            android:layout_height="2sp"
+            android:layout_marginTop="20sp"
+            android:background="@color/dark_grey" />
+
+</LinearLayout>
+
