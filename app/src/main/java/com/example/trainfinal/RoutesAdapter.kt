@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class RoutesAdapter(private val routes: List<Route>,
+class RoutesAdapter(private val routes: List<GoogleMapsRoute>,
                     val clickListener: (GoogleMapsRoute) -> Unit):
     RecyclerView.Adapter<RoutesAdapter.ViewHolder>() {
 
