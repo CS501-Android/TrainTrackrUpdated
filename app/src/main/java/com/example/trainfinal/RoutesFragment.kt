@@ -122,7 +122,7 @@ class RoutesFragment : Fragment() {
     }
 
     private fun searchRoute(origin: String, destination: String) {
-        val apiKey = "AIzaSyAl7sZkZxiwjFOQzA6nYyY0sucEmjTP-Ig"
+        val apiKey = "AIzaSyCq5ec_u8sOYk_llY8fVW2LBNvmYe_LGsU"
         val url = "https://maps.googleapis.com/maps/api/directions/json?origin=$origin&destination=$destination&mode=transit&transit_mode=train&key=$apiKey"
 
         val request = Request.Builder().url(url).build()
