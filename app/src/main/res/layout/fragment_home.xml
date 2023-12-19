@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40sp"
         android:layout_marginTop="20dp"
-        android:padding="10sp"
         android:background="@drawable/edit_text_decoration"
         android:orientation="horizontal"
         app:layout_constraintStart_toEndOf="@+id/mapFragment"

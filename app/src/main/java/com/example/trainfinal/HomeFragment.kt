@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -107,9 +108,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                 val kTemp = response.body()?.main?.temp
                 val fTemp = ((kTemp!! - 273.15)  * 9 / 5 + 32)
 
-                when (weatherDescription?.get(weatherDescription.length - 1)) {
-                    'y' -> weatherText.text = "${round(fTemp * 100) / 100}°F\t, It's a $weatherDescription one today!"
-                    else -> weatherText.text = "${round(fTemp * 100) / 100}°F\t, It's a ${weatherDescription}y one today!"
+                when (weatherDescription?.get(weatherDescription.length - 1)?.toChar()) {
+                    'y' -> weatherText.text = "${round(fTemp)}°F\t | \tIt's a ${weatherDescription} one today!"
+                    else -> weatherText.text = "${round(fTemp)}°F\t | \tIt's a ${weatherDescription}y one today!"
                 }
 
             }
