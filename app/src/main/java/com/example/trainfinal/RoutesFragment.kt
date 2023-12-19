@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.UUID
@@ -39,6 +40,8 @@ class RoutesFragment : Fragment() {
     private lateinit var searchRouteButton: Button
     private lateinit var routesRecyclerView: RecyclerView
     private val client = OkHttpClient()
+    private lateinit var routesAdapter: RoutesAdapter
+    private var routesList: MutableList<GoogleMapsRoute> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +62,11 @@ class RoutesFragment : Fragment() {
         searchRouteButton.setOnClickListener {
             val origin = originEditText.text.toString()
             val destination = destinationEditText.text.toString()
-            searchRoute(origin, destination)
+            if (origin.isNotBlank() && destination.isNotBlank()) {
+                searchRoute(origin, destination)
+            } else {
+                Toast.makeText(context, "Please enter both origin and destination", Toast.LENGTH_SHORT).show()
+            }
         }
 
         auth = Firebase.auth
@@ -118,6 +125,8 @@ class RoutesFragment : Fragment() {
             Log.e("firebasestupid", "${userData.toString()}")
         }
 
+        setupRecyclerView(view)
+
         return view
     }
 
@@ -141,21 +150,78 @@ class RoutesFragment : Fragment() {
                 val directionsResult = gson.fromJson(responseData, DirectionsApiResponse::class.java)
 
                 activity?.runOnUiThread {
-                    updateUIWithRoutes(directionsResult.routes)
+                    routesList.clear()
+                    routesList.addAll(directionsResult.routes)
+                    routesAdapter.notifyDataSetChanged()
                 }
             }
         })
     }
 
-    private fun updateUIWithRoutes(googleMapsRoutes: List<GoogleMapsRoute>) {
-        val adapter = RoutesAdapter(googleMapsRoutes) { route ->
+    private fun setupRecyclerView(view: View) {
+        routesRecyclerView = view.findViewById(R.id.routes_recycler_view)
+        routesAdapter = RoutesAdapter(routesList) { selectedRoute ->
+            confirmRoute(selectedRoute)
         }
-        routesRecyclerView.adapter = adapter
+        routesRecyclerView.adapter = routesAdapter
+    }
+
+    private fun confirmRoute(route: GoogleMapsRoute) {
+        val appRoute = convertGoogleMapsRouteToAppRoute(route)
+        storeRouteInFirebase(appRoute)
+        Toast.makeText(context, "Route confirmed and added", Toast.LENGTH_SHORT).show()
+
+        val index = routesList.indexOf(route)
+        if (index != -1) {
+            routesList.removeAt(index)
+            routesAdapter.notifyItemRemoved(index)
+        }
+    }
+
+    private fun convertGoogleMapsRouteToAppRoute(googleMapsRoute: GoogleMapsRoute): Route {
+        val firstLeg = googleMapsRoute.legs.firstOrNull()
+        val lastLeg = googleMapsRoute.legs.lastOrNull()
+
+        val routeTitle = "Route from ${firstLeg?.start_address} to ${lastLeg?.end_address}"
+        val routeDescription = "This route includes ${googleMapsRoute.legs.size} legs."
+
+        val stops = googleMapsRoute.legs.flatMap { leg ->
+            leg.steps.map { step ->
+                RouteStops(
+                    title = step.html_instructions,
+                    lat = step.start_location.lat.toFloat(),
+                    long = step.start_location.lng.toFloat()
+                )
+            }
+        }
+
+        return Route(
+            routeTitle = routeTitle,
+            routeDescription = routeDescription,
+            stops = stops.toMutableList()
+        )
+    }
+
+    private fun storeRouteInFirebase(route: Route) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val database = FirebaseDatabase.getInstance().reference
+            Util.updateRoute(mapOf(route.routeId to route), database)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        searchRouteButton.setOnClickListener {
+            val origin = originEditText.text.toString()
+            val destination = destinationEditText.text.toString()
+            if (origin.isNotBlank() && destination.isNotBlank()) {
+                searchRoute(origin, destination)
+            } else {
+                Toast.makeText(context, "Please enter both origin and destination", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun getUserInformation(userId: String, database: DatabaseReference) {

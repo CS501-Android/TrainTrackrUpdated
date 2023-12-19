@@ -49,7 +49,7 @@ data class Duration(
     val value: Int
 )
 
-data class GoogleMapsLocation(
+data class Location(
     val lat: Double,
     val lng: Double
 )

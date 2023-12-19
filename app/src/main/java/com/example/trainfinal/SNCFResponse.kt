@@ -23,7 +23,7 @@ data class Section(
     val type: String,
 )
 
-data class Location(
+data class SNCFLocation(
     val id: String,
     val name: String,
     val quality: Int,

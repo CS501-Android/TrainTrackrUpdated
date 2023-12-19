@@ -35,6 +35,7 @@
             android:textColor="@color/navy"
             android:textSize="18sp" />
 
+        <!-- End Address -->
         <TextView
             android:id="@+id/endAddress"
             android:layout_width="wrap_content"
@@ -45,6 +46,16 @@
             android:textColor="@color/navy"
             android:textSize="18sp" />
 
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/navy"
+            android:backgroundTintMode="src_in"
+            android:fontFamily="@font/mandali" />
+
         <View
             android:id="@+id/view_separator_end_stops"
             android:layout_width="match_parent"
@@ -52,5 +63,12 @@
             android:layout_marginTop="20sp"
             android:background="@color/dark_grey" />
 
+        <ImageView
+            android:id="@+id/mapImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp" />
+
 </LinearLayout>
+
 

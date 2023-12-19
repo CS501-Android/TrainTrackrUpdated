@@ -87,4 +87,8 @@ dependencies {
 
     //Server Calls
     implementation ("com.squareup.okhttp3:okhttp:4.9.0")
+
+    //Glide (Image/Static Map Loading)
+    implementation ("com.github.bumptech.glide:glide:4.11.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
 }
