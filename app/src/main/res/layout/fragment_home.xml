@@ -18,6 +18,8 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_decoration"
         android:orientation="horizontal"
+        android:padding="10sp"
+        android:paddingHorizontal="10sp"
         app:layout_constraintStart_toEndOf="@+id/mapFragment"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -27,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="12sp"
             android:fontFamily="@font/comfortaa"
+            android:paddingHorizontal="10sp"
             android:text="It's a _____ day!"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

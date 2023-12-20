@@ -12,6 +12,42 @@
         android:orientation="vertical">
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="50sp"
+                android:layout_marginLeft="20sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="20sp"
+                android:ems="10"
+                android:fontFamily="@font/aleo_light"
+                android:hint="London..."
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/searchLocation"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginRight="40sp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/navy"
+                android:fontFamily="@font/mandali"
+                android:text="Search"
+                android:textSize="18sp"
+                app:cornerRadius="4sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/text_title"
             android:layout_width="wrap_content"
@@ -19,8 +55,11 @@
             android:layout_marginLeft="20sp"
             android:layout_marginTop="20sp"
             android:layout_marginBottom="10sp"
+            android:background="@drawable/panel_text_input_decoration"
             android:fontFamily="@font/comfortaa"
-            android:text="Title"
+            android:paddingLeft="10sp"
+            android:paddingRight="20sp"
+            android:text="Location:"
             android:textColor="@color/black"
             android:textSize="24sp" />
 
@@ -30,10 +69,12 @@
             android:layout_height="50sp"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_marginBottom="20sp"
             android:ems="10"
-            android:fontFamily="@font/mandali"
+            android:fontFamily="@font/aleo_light"
             android:hint="Insane Route!"
-            android:inputType="text" />
+            android:inputType="text"
+            android:paddingLeft="10sp" />
 
         <TextView
             android:id="@+id/text_lat_routes"
@@ -42,8 +83,11 @@
             android:layout_marginLeft="20sp"
             android:layout_marginTop="10sp"
             android:layout_marginBottom="10sp"
+            android:background="@drawable/panel_text_input_decoration"
             android:fontFamily="@font/comfortaa"
-            android:text="Latitude "
+            android:paddingLeft="10sp"
+            android:paddingRight="20sp"
+            android:text="Latitude:"
             android:textColor="@color/black"
             android:textSize="24sp" />
 
@@ -53,10 +97,12 @@
             android:layout_height="50sp"
             android:layout_marginLeft="20sp"
             android:layout_marginRight="20sp"
+            android:layout_marginBottom="20sp"
             android:ems="10"
-            android:fontFamily="@font/mandali"
+            android:fontFamily="@font/aleo_light"
             android:hint="60.129..."
-            android:inputType="text" />
+            android:inputType="text"
+            android:paddingLeft="10sp" />
 
         <TextView
             android:id="@+id/text_long_routes"
@@ -64,8 +110,11 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10sp"
             android:layout_marginLeft="20sp"
+            android:background="@drawable/panel_text_input_decoration"
             android:fontFamily="@font/comfortaa"
-            android:text="Longitude"
+            android:paddingLeft="10sp"
+            android:paddingRight="20sp"
+            android:text="Longitude:"
             android:textColor="@color/black"
             android:textSize="24sp" />
 
@@ -77,9 +126,10 @@
             android:layout_marginRight="20sp"
             android:layout_marginBottom="20sp"
             android:ems="10"
-            android:fontFamily="@font/mandali"
+            android:fontFamily="@font/aleo_light"
             android:hint="120.984..."
-            android:inputType="text" />
+            android:inputType="text"
+            android:paddingLeft="10sp" />
 
         <Button
             android:id="@+id/submit_stop"
@@ -95,39 +145,6 @@
             app:cornerRadius="4sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <EditText
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:layout_marginLeft="20sp"
-            android:layout_marginRight="20sp"
-            android:layout_marginBottom="20sp"
-            android:ems="10"
-            android:fontFamily="@font/mandali"
-            android:hint="London..."
-            android:inputType="text" />
-
-        <Button
-            android:id="@+id/searchLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20sp"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/navy"
-            android:fontFamily="@font/mandali"
-            android:text="Search Location"
-            android:textSize="18sp"
-            app:cornerRadius="4sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageView
-            android:id="@+id/mapImageView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 </FrameLayout>

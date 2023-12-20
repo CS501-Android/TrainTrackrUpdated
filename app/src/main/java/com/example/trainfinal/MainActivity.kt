@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
 
     private val requiredPerms =
-        mutableListOf(android.Manifest.permission.CAMERA,
+        mutableListOf(android.Manifest.permission.ACCESS_BACKGROUND_LOCATION,
 //            android.Manifest.permission.READ_EXTERNAL_STORAGE,
 //            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         )

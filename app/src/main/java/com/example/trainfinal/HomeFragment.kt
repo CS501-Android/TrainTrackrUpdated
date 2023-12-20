@@ -18,6 +18,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,7 +48,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         mapView.getMapAsync(this)
 
         doAsync{
-            getWeatherData(42.4383, -71.1856)
+            getWeatherData(42.350037, -71.10712)
             viewModel.fetchTrainRoutes("US", "CAD", "00:00:00","2021-01-01")
             Log.i("weatherapp", "Error: ${viewModel.getError().toString()}")
             Log.i("weatherapp", "Routes: ${viewModel.getRoutes().toString()}")
@@ -62,9 +63,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         Log.e("googlemapstupid", "hello")
 
         // Move to Belmont, MA
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(42.4383, -71.1856), 15f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(42.350037, -71.10712), 15f))
 
         googleMap.setOnCameraIdleListener {
+            mMap.clear()
+            mMap.addMarker(
+                MarkerOptions()
+                    .position(LatLng(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude)))
             getWeatherData(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude)
         }
     }
