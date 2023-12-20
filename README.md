@@ -9,7 +9,7 @@
 ## API Utilize 
 - **Google Map API**
 Google Map API was utilized to render current user locations. On top of such, it was used to portray potential stops and user-inputted stops within the Google Map.
-Given the user input, it'll create routes and stopping points of the Trip detail.
+Given the user input, it'll create routes and stopping points of the Trip detail. Currently, searching up a location returns the coordinates of the stop, and adding multiple stops will display a map with the route plotted out in the order it was added.
 
 - **Firebase API**
 We've utilized the Firebase Email/Password authentication method for our Login. We plan to add another instance with Google or other social media Login as we plan to integrate
@@ -69,7 +69,7 @@ data class Cloud (
 ```
 
 - **SNCF (Implementing)**
-TBD
+TBD, saving this for a future update (to verify that stops are actually stops) as this only had a limited scope (French rail) and had depreceated/outdated documentation.
 
 - **OpenTripPlanner (Potentially?)**
 OpenTripPlanner was technically our original plan, we've implemented Retrofit and specific classes regarding that front to receive the callback.
