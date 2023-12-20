@@ -13,7 +13,6 @@ import android.location.Geocoder
 import android.text.TextUtils
 import android.util.Log
 import android.widget.ImageView
-import com.bumptech.glide.Glide
 import java.io.IOException
 
 @Suppress("DEPRECATION")
@@ -42,7 +41,6 @@ class RouteStop : Fragment() {
         search = view.findViewById(R.id.search)
         submitBtn = view.findViewById(R.id.submit_stop)
         searchBtn = view.findViewById(R.id.searchLocation)
-        mapImageView = view.findViewById(R.id.mapImageView)
 
         submitBtn.setOnClickListener {
             // Empty Check
@@ -63,7 +61,6 @@ class RouteStop : Fragment() {
             search.setText("")
             stopList?.add(newStop)
             viewModel.updateData(stopList!!)
-            updateMapImage()
         }
 
         searchBtn.setOnClickListener {
@@ -85,14 +82,5 @@ class RouteStop : Fragment() {
         }
 
         return view
-    }
-    private fun updateMapImage() {
-        val stops = viewModel.getData()
-        if (stops.isNullOrEmpty()) return
-
-        val markers = stops.joinToString("|") { "markers=color:red%7Clabel:S%7C${it.lat},${it.long}" }
-        val staticMapUrl = "https://maps.googleapis.com/maps/api/staticmap?size=600x300&$markers&key=AIzaSyCq5ec_u8sOYk_llY8fVW2LBNvmYe_LGsU"
-
-        Glide.with(this).load(staticMapUrl).into(mapImageView)
     }
 }
